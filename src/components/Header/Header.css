@@ -1,0 +1,105 @@
+.header {
+  background: linear-gradient(90deg, #eac7d3, #f7f0ea);
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.header-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+/* Menu escritorio */
+.nav-desktop a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #2a2a2a;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.nav-desktop a:hover {
+  background-color: #c49aa8;
+  color: white;
+}
+
+/* Hamburguesa oculta en escritorio */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  font-size: 32px;
+}
+
+/* =============== MÓVIL =============== */
+@media (max-width: 768px) {
+  .header {
+    background: none;
+    box-shadow: none;
+    padding: 10px 20px;
+    height: 0;
+  }
+
+  .header-title {
+    display: none;
+  }
+
+  .nav-desktop {
+    display: none;
+  }
+
+  /* Mostrar hamburguesa */
+  .hamburger {
+    display: block;
+    position: fixed;
+    right: 18px;
+    top: 18px;
+    background: rgba(255,255,255,0.75);
+    padding: 10px 16px;
+    border-radius: 14px;
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+  }
+
+  /* Menú móvil */
+  .nav-mobile {
+    position: fixed;
+    top: 75px;
+    right: 20px;
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    width: 65%;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    animation: slideIn 0.35s ease forwards;
+    z-index: 9998;
+  }
+
+  .nav-mobile a {
+    text-decoration: none;
+    color: #2a2a2a;
+    font-weight: 500;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}

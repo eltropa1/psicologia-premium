@@ -1,0 +1,81 @@
+/* ===================== ESTILO GENERAL ===================== */
+
+.sobre-mi {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 80px 40px;
+  position: relative;
+}
+
+.sobre-mi-texto {
+  max-width: 500px;
+  text-align: center;
+}
+
+.sobre-mi-texto h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.foto-psicologa {
+  width: 320px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  position: relative;
+  z-index: 2;
+}
+
+/* ===================== SOLO MÓVIL ===================== */
+@media (max-width: 768px) {
+  .sobre-mi {
+    flex-direction: column;
+    padding-top: 80px;
+    padding-bottom: 140px;  /* espacio extra para la frase */
+  }
+
+  .foto-psicologa {
+    width: 85%;
+    height: auto;
+    border-radius: 25px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+  }
+
+  /* FRASE MANUSCRITA SOBRE LA FOTO */
+  .sobre-mi::before {
+    content: "Tu bienestar importa";
+    position: absolute;
+    bottom: 350px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-12deg);
+    font-family: "Dancing Script", cursive !important;
+    font-size: 2.6rem;
+    color: #c49aa8;
+    z-index: 5;
+    opacity: 0;
+    animation: fraseFade 1.3s ease forwards;
+  }
+
+  @keyframes fraseFade {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(10px) rotate(-12deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0) rotate(-12deg);
+    }
+  }
+}
+
+/* ===================== ESCRITORIO ===================== */
+@media (min-width: 769px) {
+  .sobre-mi::before {
+    display: none;
+  }
+}

@@ -1,0 +1,13 @@
+/* Reset suave */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fuente general */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f7f0ea;
+  color: #2a2a2a;
+}

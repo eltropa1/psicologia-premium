@@ -1,0 +1,44 @@
+/* ---------- SOLO MÓVIL ---------- */
+@media (max-width: 768px) {
+  .mobile-header-name {
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 10px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .nombre-doctora {
+    font-family: "Dancing Script", cursive;
+    font-size: 2.6rem;
+    color: #c49aa8;
+    margin: 0;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeSignature 1.2s ease forwards;
+    animation-delay: 0.3s;
+  }
+
+  .subtitulo-doctora {
+    font-family: "Playfair Display", serif;
+    font-size: 1rem;
+    margin-top: 6px;
+    color: #704c57;
+    opacity: 0.85;
+  }
+
+  @keyframes fadeSignature {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* ---------- OCULTO EN ESCRITORIO ---------- */
+@media (min-width: 769px) {
+  .mobile-header-name {
+    display: none;
+  }
+}
