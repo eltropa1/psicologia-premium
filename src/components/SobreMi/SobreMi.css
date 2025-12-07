@@ -50,7 +50,7 @@
   .sobre-mi::before {
     content: "Tu bienestar importa";
     position: absolute;
-    bottom: 350px;
+    bottom: 400px;
     left: 50%;
     transform: translateX(-50%) rotate(-12deg);
     font-family: "Dancing Script", cursive !important;
