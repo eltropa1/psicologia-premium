@@ -1,0 +1,48 @@
+.testimonios-section {
+  padding: 80px 40px;
+}
+
+.testimonios-section h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.testimonios-section h2::after {
+  content: "";
+  width: 120px;
+  height: 14px;
+  background: url("https://raw.githubusercontent.com/yourcdn/brushstroke.png") no-repeat center;
+  background-size: contain;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -12px;
+  opacity: 0.8;
+}
+
+.testimonios-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.testimonio-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 350px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  line-height: 1.6;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+/* Animación hover opcional (ligera, elegante) */
+.testimonio-card:hover {
+  transform: translateY(-4px);
+  transition: 0.3s ease;
+}
