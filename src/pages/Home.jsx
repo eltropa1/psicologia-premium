@@ -6,7 +6,8 @@ import useReveal from "../hooks/useReveal";
 import Servicios from "../components/Servicios/Servicios";
 import Testimonios from "../components/Testimonios/Testimonios";
 import Blog from "../components/Blog/Blog";
-
+import Contacto from "../components/Contacto/Contacto";
+import Footer from "../components/Footer/Footer";
 
 export default function Home() {
     useReveal();
@@ -20,6 +21,8 @@ export default function Home() {
       <Servicios />
       <Testimonios />
       <Blog />
+      <Contacto />
+      <Footer />
 
       <div style={{ padding: "100px 20px" }}>
         <h2>Contenido provisional</h2>
