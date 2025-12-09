@@ -1,8 +1,27 @@
-import articles from "../data/articles";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../components/Blog/Blog.css"; // aprovechamos el mismo estilo del grid
+import { supabase } from "../lib/supabaseClient";
+import "../components/Blog/Blog.css";
 
 export default function BlogList() {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    const loadArticles = async () => {
+      const { data, error } = await supabase
+        .from("articles")
+        .select("*")
+        .order("created_at", { ascending: false });
+        
+
+      if (!error) setArticles(data);
+    };
+
+    loadArticles();
+    
+
+  }, []);
+
   return (
     <section className="blog-section" style={{ paddingTop: "120px" }}>
       <h2>Blog</h2>
@@ -10,13 +29,13 @@ export default function BlogList() {
       <div className="blog-grid">
         {articles.map((art, i) => (
           <div key={art.id} className={`post reveal delay-${i + 1}`}>
-            <img src={art.imagen} alt={art.titulo} />
+            <img src={art.image_url} alt={art.title} />
 
             <div className="post-content">
-              <h3>{art.titulo}</h3>
-              <p>{art.descripcion}</p>
+              <h3>{art.title}</h3>
+              <p>{art.description}</p>
 
-              <Link to={`/blog/${art.id}`} className="leer-mas">
+              <Link to={`/blog/${art.slug}`} className="leer-mas">
                 Leer más →
               </Link>
             </div>

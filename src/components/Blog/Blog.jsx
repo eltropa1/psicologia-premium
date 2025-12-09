@@ -20,7 +20,7 @@ export default function Blog() {
 
         <div className="post delay-2">
           <img
-            src="hhttps://images.unsplash.com/photo-1755302732844-c811a78b38da?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
           />
           <div className="post-content">
             <h3>La importancia de la salud mental</h3>
