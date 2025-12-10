@@ -1,0 +1,50 @@
+.blog-section {
+  padding: 80px 40px;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.post {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.post:hover {
+  transform: translateY(-5px);
+}
+
+.post img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.post-content {
+  padding: 20px;
+}
+
+.post-content h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-family: "Playfair Display", serif;
+}
+
+.leer-mas {
+  display: inline-block;
+  margin-top: 10px;
+  color: #c49aa8;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.ver-mas-container {
+  text-align: center;
+  margin-top: 40px;
+}

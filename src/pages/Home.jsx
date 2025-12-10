@@ -2,32 +2,42 @@ import Header from "../components/Header/Header";
 import Hero from "../components/Hero/Hero";
 import MobileHeader from "../components/MobileHeader/MobileHeader";
 import SobreMi from "../components/SobreMi/SobreMi";
-import useReveal from "../hooks/useReveal";
 import Servicios from "../components/Servicios/Servicios";
 import Testimonios from "../components/Testimonios/Testimonios";
-import Blog from "../components/Blog/Blog";
 import Contacto from "../components/Contacto/Contacto";
 import Footer from "../components/Footer/Footer";
+import BlogPreview from "../components/BlogPreview/BlogPreview";
+
+import { Link } from "react-router-dom";
+
 
 export default function Home() {
-    useReveal();
-
   return (
     <>
+      {/* Header para escritorio */}
       <Header />
+
+      {/* Hero para escritorio */}
       <Hero />
+
+      {/* Bloque superior con el nombre para móviles */}
       <MobileHeader />
+
+      {/* Secciones principales */}
       <SobreMi />
       <Servicios />
       <Testimonios />
-      <Blog />
-      <Contacto />
-      <Footer />
 
-      <div style={{ padding: "100px 20px" }}>
-        <h2>Contenido provisional</h2>
-        <p>Seguimos construyendo la Home módulo a módulo.</p>
-      </div>
+      {/* ================================
+          SECCIÓN BLOG (versión Home)
+          ================================ */}
+     <BlogPreview /> 
+
+      {/* Sección Contacto */}
+      <Contacto />
+
+      {/* Footer */}
+      <Footer />
     </>
   );
 }
