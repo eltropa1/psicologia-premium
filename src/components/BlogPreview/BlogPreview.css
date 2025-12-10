@@ -48,3 +48,16 @@
   text-align: center;
   margin-top: 40px;
 }
+
+/* Mantener el titulo Blog como texto y quitar todo el html por defecto de un link */
+.blog-title-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  justify-content: center;
+}
+
+.blog-title-link h2:hover {
+  cursor: pointer;
+  opacity: 100%;
+}

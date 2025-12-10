@@ -1,28 +1,63 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { scrollToSection } from "../../helpers/scrollToSection";
 import "./Header.css";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
 
+  // Función OnePage universal
+  const handleNav = (e, sectionId) => {
+    e.preventDefault();
+
+    closeMenu(); // cerrar menú móvil
+
+    if (location.pathname === "/") {
+      // Ya estamos en Home → scroll directo
+      scrollToSection(sectionId);
+    }
+    if (sectionId === "top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    } else {
+      // No estamos en Home → ir a Home con hash
+      window.location.href = `/#${sectionId}`;
+    }
+  };
+
   return (
     <header className="header">
-      {/* Nombre de la marca (solo escritorio) */}
+      {/* Marca versión escritorio */}
       <h3 className="header-title">Psicología Premium</h3>
 
       {/* Menú escritorio */}
       <nav className="nav-desktop">
-        <Link to="/">Inicio</Link>
-        <Link to="/#sobre-mi">Sobre mí</Link>
-        <Link to="/servicios">Servicios</Link>
-        <Link to="/blog">Blog</Link>
-        <Link to="/contacto">Contacto</Link>
+        <a href="/" onClick={(e) => handleNav(e, "top")}>
+          Inicio
+        </a>
+
+        <a href="/#sobre-mi" onClick={(e) => handleNav(e, "sobre-mi")}>
+          Sobre mí
+        </a>
+
+        <a href="/#servicios" onClick={(e) => handleNav(e, "servicios")}>
+          Servicios
+        </a>
+
+        <a href="/#blog" onClick={(e) => handleNav(e, "blog")}>
+          Blog
+        </a>
+
+        <a href="/#contacto" onClick={(e) => handleNav(e, "contacto")}>
+          Contacto
+        </a>
       </nav>
 
-      {/* Botón hamburguesa (solo móvil) */}
+      {/* Botón hamburguesa */}
       <div className="hamburger" onClick={toggleMenu}>
         ☰
       </div>
@@ -30,18 +65,27 @@ export default function Header() {
       {/* Menú móvil */}
       {menuOpen && (
         <nav className="nav-mobile">
-          <a href="#sobre-mi" onClick={closeMenu}>
+          <a href="/#top" onClick={(e) => handleNav(e, "top")}>
+            Inicio
+          </a>
+
+          <a href="/#sobre-mi" onClick={(e) => handleNav(e, "sobre-mi")}>
             Sobre mí
           </a>
-          <a href="#servicios" onClick={closeMenu}>
+
+          <a href="/#servicios" onClick={(e) => handleNav(e, "servicios")}>
             Servicios
           </a>
-          <a href="#testimonios" onClick={closeMenu}>
+
+          <a href="/#testimonios" onClick={(e) => handleNav(e, "testimonios")}>
             Testimonios
           </a>
-          <Link to="/blog" onClick={closeMenu}></Link>
-         
-          <a href="#contacto" onClick={closeMenu}>
+
+          <a href="/#blog" onClick={(e) => handleNav(e, "blog")}>
+            Blog
+          </a>
+
+          <a href="/#contacto" onClick={(e) => handleNav(e, "contacto")}>
             Contacto
           </a>
         </nav>

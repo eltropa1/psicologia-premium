@@ -14,6 +14,9 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <>
+      {/* El inico de la pagina*/}
+      <div id="top"></div>
+
       {/* Header para escritorio */}
       <Header />
 

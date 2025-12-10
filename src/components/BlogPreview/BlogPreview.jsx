@@ -22,7 +22,9 @@ export default function BlogPreview() {
 
   return (
     <section id="blog" className="blog-section">
-      <h2>Blog</h2>
+      <Link to="/blog" className="blog-title-link">
+        <h2>Blog</h2>
+      </Link>
 
       <div className="blog-grid">
         {articles.map((art, i) => (
