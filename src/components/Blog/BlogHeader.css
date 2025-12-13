@@ -27,3 +27,20 @@
 .blog-nav-item:hover {
   opacity: 0.7;
 }
+
+/* ======== MOBILE ADAPTATION ======== */
+@media (max-width: 480px) {
+  .blog-header {
+    padding: 12px 20px;
+  }
+
+  .blog-nav {
+    gap: 12px;
+    flex-wrap: wrap;       /* ↓↓↓ esto evita que se salgan del ancho */
+  }
+
+  .blog-nav-item {
+    font-size: 0.9rem;
+    padding: 4px 6px;
+  }
+}

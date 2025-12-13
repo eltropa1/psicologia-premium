@@ -2,25 +2,33 @@
    ESTILOS PARA EL BOTÓN FLOTANTE "VOLVER ARRIBA"
    ====================================================== */
 
+
+   /* Botón flotante "Volver arriba" */
 .scroll-top-button {
   position: fixed;
-  bottom: 40px;             /* separación inferior */
-  right: 40px;              /* separación lateral */
-  width: 50px;
-  height: 50px;
-  background: #c49aa8;      /* color principal de tu web */
+  bottom: 20px;              /* ↓↓ más cerca para pantallas pequeñas */
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  background: #c49aa8;
   color: white;
   border: none;
-  border-radius: 50%;       /* forma redondeada */
-  font-size: 1.5rem;
+  border-radius: 50%;
+  font-size: 1.4rem;
   font-weight: bold;
   cursor: pointer;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
   transition: transform 0.2s ease, opacity 0.3s;
-  z-index: 999;             /* siempre encima */
+  z-index: 9999 !important;    /* Asegura que esté por encima de todo */
 }
 
-.scroll-top-button:hover {
-  transform: scale(1.08);
-  opacity: 0.85;
+/* Tamaños móviles */
+@media (max-width: 480px) {
+  .scroll-top-button {
+    width: 42px;
+    height: 42px;
+    bottom: 16px;
+    right: 16px;
+    font-size: 1.25rem;
+  }
 }
