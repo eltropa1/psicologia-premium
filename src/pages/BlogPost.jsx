@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 
@@ -16,7 +16,7 @@ export default function BlogPost() {
   useEffect(() => {
     async function loadPost() {
       const { data, error } = await supabase
-        .from("posts")
+        .from("articles")
         .select("*")
         .eq("slug", slug)
         .single();
@@ -66,6 +66,19 @@ export default function BlogPost() {
         }}
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
+      <Link
+  to="/blog"
+  className="volver reveal delay-3"
+  style={{
+    display: "block",
+    textAlign: "center",
+    marginTop: "40px",
+  }}
+>
+  ← Ver todos los artículos
+</Link>
+
+      
     </section>
   );
 }
