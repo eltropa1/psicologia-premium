@@ -25,7 +25,7 @@ export default function ScrollTopButton() {
      * Muestra el botón si se baja más de 300px.
      */
     const toggleVisibility = () => {
-      if (window.scrollY > 300) {
+      if (window.scrollY > 10) {
         setVisible(true);
       } else {
         setVisible(false);
@@ -56,7 +56,7 @@ export default function ScrollTopButton() {
     <>
       {visible && (
         <button
-          className="scroll-top-button reveal"
+          className="scroll-top-button"
           onClick={scrollToTop}
         >
           ↑
