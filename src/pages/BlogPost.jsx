@@ -1,6 +1,8 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
+import BlogHeader from "../components/Blog/BlogHeader";
+import ScrollTopButton from "../components/ScrollTopButton/ScrollTopButton";
 
 // ⬅️ IMPORTA EL HOOK
 import useReveal from "../hooks/useReveal";
@@ -34,6 +36,10 @@ export default function BlogPost() {
   if (!post) return <p style={{ padding: "40px" }}>Artículo no encontrado.</p>;
 
   return (
+    <>
+    <BlogHeader />
+    <ScrollTopButton />
+    
     <section className="blog-post-section" style={{ padding: "80px 40px" }}>
       
       <h1
@@ -80,5 +86,6 @@ export default function BlogPost() {
 
       
     </section>
+   </> 
   );
 }

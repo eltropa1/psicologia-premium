@@ -56,3 +56,18 @@
   font-size: 1.2rem;
   font-family: "Playfair Display", serif;
 }
+
+.blog-header {
+  background: white;
+}
+
+.blog-header-link {
+  text-decoration: none;
+  font-weight: 600;
+  color: #c49aa8;      /* tu color */
+  transition: opacity 0.2s ease-in-out;
+}
+
+.blog-header-link:hover {
+  opacity: 0.7;
+}
