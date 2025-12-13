@@ -35,6 +35,9 @@ export default function BlogPreview() {
               <h3>{art.title}</h3>
               <p>{art.description}</p>
 
+              console.log("Supabase value:", supabase);
+
+
               <Link to={`/blog/${art.slug}`} className="leer-mas">
                 Leer más →
               </Link>

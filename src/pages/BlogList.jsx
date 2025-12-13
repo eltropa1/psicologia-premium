@@ -3,8 +3,14 @@ import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
 import "../components/Blog/Blog.css";
 
+// ⬅️ IMPORTANTE: importa el hook
+import useReveal from "../hooks/useReveal";
+
 export default function BlogList() {
   const [articles, setArticles] = useState([]);
+
+  // ⬅️ LLAMADA CLAVE: se reactivará cuando articles cambie
+  useReveal([articles]);
 
   useEffect(() => {
     const loadArticles = async () => {
@@ -12,19 +18,16 @@ export default function BlogList() {
         .from("articles")
         .select("*")
         .order("created_at", { ascending: false });
-        
 
       if (!error) setArticles(data);
     };
 
     loadArticles();
-    
-
   }, []);
 
   return (
     <section className="blog-section" style={{ paddingTop: "120px" }}>
-      <h2>Blog</h2>
+      <h2 className="reveal">Blog</h2>
 
       <div className="blog-grid">
         {articles.map((art, i) => (

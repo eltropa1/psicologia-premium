@@ -12,24 +12,25 @@ export default function App() {
   /* ============================
      1) REVEAL ANIMATION
   ============================ */
-  useEffect(() => {
-    const revealElements = () => {
-      const reveals = document.querySelectorAll(".reveal");
-      reveals.forEach((el) => {
-        const windowHeight = window.innerHeight;
-        const elementTop = el.getBoundingClientRect().top;
+ useEffect(() => {
+  const revealElements = () => {
+    const reveals = document.querySelectorAll(".reveal");
+    reveals.forEach((el) => {
+      const windowHeight = window.innerHeight;
+      const elementTop = el.getBoundingClientRect().top;
 
-        if (elementTop < windowHeight - 50) {
-          el.classList.add("active");
-        }
-      });
-    };
+      if (elementTop < windowHeight - 50) {
+        el.classList.add("active");
+      }
+    });
+  };
 
-    window.addEventListener("scroll", revealElements);
-    revealElements(); // Ejecutar al montar
+  window.addEventListener("scroll", revealElements);
+  revealElements(); // Ejecutar inmediatamente
 
-    return () => window.removeEventListener("scroll", revealElements);
-  }, []);
+  return () => window.removeEventListener("scroll", revealElements);
+}, []);
+
 
   /* ============================
      2) HASH SCROLL (ONE PAGE)

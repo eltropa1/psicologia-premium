@@ -1,45 +1,71 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
-import "./BlogPost.css";
+
+// ⬅️ IMPORTA EL HOOK
+import useReveal from "../hooks/useReveal";
 
 export default function BlogPost() {
-  const { id: slug } = useParams();
-  const [article, setArticle] = useState(null);
+  const { slug } = useParams();
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // ⬅️ ACTIVA REVEAL CUANDO EL POST SE CARGUE
+  useReveal([post]);
 
   useEffect(() => {
-    const loadArticle = async () => {
+    async function loadPost() {
       const { data, error } = await supabase
-        .from("articles")
+        .from("posts")
         .select("*")
         .eq("slug", slug)
         .single();
 
-      if (!error) setArticle(data);
-    };
+      if (error) console.error("Error al cargar post:", error);
 
-    loadArticle();
+      setPost(data);
+      setLoading(false);
+    }
+
+    loadPost();
   }, [slug]);
 
-  if (!article) return <p style={{ padding: "40px" }}>Cargando...</p>;
+  if (loading) return <p style={{ padding: "40px" }}>Cargando artículo...</p>;
+  if (!post) return <p style={{ padding: "40px" }}>Artículo no encontrado.</p>;
 
   return (
-    <div className="post-page reveal fade-in">
-      <img className="post-page-img" src={article.image_url} alt={article.title} />
+    <section className="blog-post-section" style={{ padding: "80px 40px" }}>
+      
+      <h1
+        className="reveal"
+        style={{ textAlign: "center", marginBottom: "20px" }}
+      >
+        {post.title}
+      </h1>
 
-      <h1 className="reveal delay-2">{article.title}</h1>
+      <img
+        src={post.image_url}
+        alt={post.title}
+        className="reveal delay-1"
+        style={{
+          width: "100%",
+          maxWidth: "900px",
+          margin: "20px auto",
+          display: "block",
+          borderRadius: "12px"
+        }}
+      />
 
-      <div className="post-page-content">
-        {article.content.split("\n").map((p, i) => (
-          <p key={i} className={`reveal delay-${i + 3}`}>
-            {p.trim()}
-          </p>
-        ))}
-      </div>
-
-      <Link to="/blog" className="volver reveal delay-8">
-        ← Volver al Blog
-      </Link>
-    </div>
+      <article
+        className="reveal delay-2"
+        style={{
+          maxWidth: "900px",
+          margin: "40px auto",
+          fontSize: "1.2rem",
+          lineHeight: "1.7"
+        }}
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
+    </section>
   );
 }

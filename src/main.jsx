@@ -1,9 +1,8 @@
 import React from 'react';
-
-import './styles/animations.css';
-
 import ReactDOM from 'react-dom/client';
+
 import App from './App';
+import './styles/animations.css';
 import './styles/globals.css';
 
 
