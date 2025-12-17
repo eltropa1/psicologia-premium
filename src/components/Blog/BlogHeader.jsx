@@ -21,7 +21,7 @@ export default function BlogHeader() {
         </Link>
 
         <Link to="/#contacto" className="blog-nav-item">
-          Contacto
+          contacto
         </Link>
       </nav>
     </header>
