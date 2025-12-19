@@ -54,3 +54,15 @@
 .contacto-form button:hover {
   background-color: #a87c8a;
 }
+
+.contacto-exito {
+  color: green;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.contacto-error {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+}

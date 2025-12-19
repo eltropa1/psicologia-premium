@@ -1,15 +1,111 @@
+import { useState } from "react";
 import "./Contacto.css";
 
 export default function Contacto() {
+  // Estados para manejar datos y mensajes del usuario
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+    honeypot: "", // invisible anti-bots
+  });
+
+  const [status, setStatus] = useState(null); // éxito o error
+
+  // Actualizar cada campo
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  // Enviar formulario al backend
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("enviando");
+
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (res.ok) {
+        setStatus("ok");
+        setForm({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+          honeypot: "",
+        });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <section id="contacto" className="contacto-section reveal fade-in">
       <h2>Contacto</h2>
 
-      <form className="contacto-form">
-        <input type="text" placeholder="Tu nombre" required />
-        <input type="email" placeholder="Tu correo" required />
-        <textarea rows="5" placeholder="Mensaje" required></textarea>
+      <form className="contacto-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Tu nombre"
+          value={form.name}
+          onChange={handleChange}
+          required
+        />
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Tu correo"
+          value={form.email}
+          onChange={handleChange}
+          required
+        />
+
+        <input
+          type="text"
+          name="phone"
+          placeholder="Teléfono (opcional)"
+          value={form.phone}
+          onChange={handleChange}
+        />
+
+        <textarea
+          name="message"
+          rows="5"
+          placeholder="Mensaje"
+          value={form.message}
+          onChange={handleChange}
+          required
+        ></textarea>
+
+        {/* Honeypot invisible (anti-bots) */}
+        <input
+          type="text"
+          name="honeypot"
+          value={form.honeypot}
+          onChange={handleChange}
+          style={{ display: "none" }}
+        />
+
         <button type="submit">Enviar</button>
+
+        {/* Mensaje de estado */}
+        {status === "ok" && (
+          <p className="contacto-exito">Mensaje enviado correctamente 🎉</p>
+        )}
+        {status === "error" && (
+          <p className="contacto-error">Hubo un error al enviar el mensaje.</p>
+        )}
+        {status === "enviando" && <p>Enviando...</p>}
       </form>
     </section>
   );
