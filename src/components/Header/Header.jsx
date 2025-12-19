@@ -16,17 +16,20 @@ export default function Header() {
 
     closeMenu(); // cerrar menú móvil
 
-    if (location.pathname === "/") {
-      // Ya estamos en Home → scroll directo
-      scrollToSection(sectionId);
-    }
-    if (sectionId === "top") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    // Si estamos en HOME → scroll directo
+    const isHome = location.pathname === "/";
+
+    if (isHome) {
+      if (sectionId === "top") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        scrollToSection(sectionId);
+      }
       return;
-    } else {
-      // No estamos en Home → ir a Home con hash
-      window.location.href = `/#${sectionId}`;
     }
+
+    // Si NO estamos en HOME → ir a Home con hash
+    window.location.href = `/#${sectionId}`;
   };
 
   return (
@@ -52,9 +55,9 @@ export default function Header() {
           Blog
         </a>
 
-        <a href="/#contacto" onClick={(e) => handleNav(e, "contacto")}>
+        <Link to="/#contacto" onClick={(e) => handleNav(e, "contacto")}>
           Contacto
-        </a>
+        </Link>
       </nav>
 
       {/* Botón hamburguesa */}

@@ -8,10 +8,22 @@ import Contacto from "../components/Contacto/Contacto";
 import Footer from "../components/Footer/Footer";
 import BlogPreview from "../components/BlogPreview/BlogPreview";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import {React, useEffect} from "react";
 
 
 export default function Home() {
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" }, 300);
+      }
+    }
+  }, [hash]);
+
   return (
     <>
       {/* El inico de la pagina*/}

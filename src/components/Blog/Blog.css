@@ -71,3 +71,15 @@
 .blog-header-link:hover {
   opacity: 0.7;
 }
+
+.leer-mas {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+  color: #c49aa8;
+  text-decoration: none;
+}
+
+.leer-mas:hover {
+  text-decoration: underline;
+}
