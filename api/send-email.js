@@ -1,37 +1,42 @@
 // /api/send-email.js
-// ================================================
-// FUNCIÓN SERVERLESS PARA ENVIAR EMAILS DESDE VERCEL
-// UTILIZA NODEMAILER Y UNA APP PASSWORD DE GMAIL
-// ================================================
+// =============================================================
+// FUNCIÓN SERVERLESS PARA ENVIAR DOS EMAILS:
+// 1) CORREO A LA PSICÓLOGA (MAIL_TO)
+// 2) CORREO AUTOMÁTICO DE RESPUESTA AL USUARIO (AUTO-REPLY)
+// =============================================================
 
 import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
-  // Aceptamos solo POST
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Método no permitido" });
   }
 
   const { name, email, phone, message, honeypot } = req.body;
 
-  // Anti-spam honeypot: si el campo oculto tiene algo → es un bot
+  // Honeypot anti-bots
   if (honeypot) {
     return res.status(200).json({ message: "OK (honeypot capturado)" });
   }
 
-  // Transporter Nodemailer usando Gmail + App Password
+  // Configuración Nodemailer
   const transporter = nodemailer.createTransport({
     host: process.env.MAIL_HOST,
-    port: process.env.MAIL_PORT,
+    port: Number(process.env.MAIL_PORT),
     secure: process.env.MAIL_SECURE === "true",
     auth: {
       user: process.env.MAIL_USER,
       pass: process.env.MAIL_PASS,
     },
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 
-  // Contenido del correo que llegará a ti (o tu clienta)
-  const mailOptions = {
+  // ================================================
+  // CORREO A LA PSICÓLOGA
+  // ================================================
+  const mailToPsychologist = {
     from: `Formulario Web <${process.env.MAIL_USER}>`,
     to: process.env.MAIL_TO,
     subject: `Nuevo mensaje de contacto de ${name}`,
@@ -45,8 +50,31 @@ export default async function handler(req, res) {
     `,
   };
 
+  // ================================================
+  // AUTO-REPLY AL USUARIO
+  // ================================================
+  const autoReply = {
+    from: `Psicología Premium <${process.env.MAIL_USER}>`,
+    to: email,
+    subject: "Gracias por tu mensaje ✨",
+    html: `
+      <h2>Gracias por contactar conmigo, ${name}.</h2>
+      <p>He recibido tu mensaje correctamente y te responderé lo antes posible.</p>
+      <p style="margin-top:10px">💬 <strong>Tu mensaje:</strong></p>
+      <blockquote style="background:#f7f0ea;padding:10px;border-left:4px solid #c49aa8;">
+        ${message}
+      </blockquote>
+      <p style="margin-top:20px;">Un saludo,<br><strong>María López</strong><br>Psicóloga Colegiada</p>
+    `,
+  };
+
   try {
-    await transporter.sendMail(mailOptions);
+    // 1) Enviar correo a la psicóloga
+    await transporter.sendMail(mailToPsychologist);
+
+    // 2) Enviar auto-reply al usuario
+    await transporter.sendMail(autoReply);
+
     return res.status(200).json({ message: "Correo enviado correctamente" });
   } catch (error) {
     console.error("Error enviando correo:", error);

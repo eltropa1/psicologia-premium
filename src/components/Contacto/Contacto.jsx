@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Contacto.css";
 
 export default function Contacto() {
@@ -46,6 +46,14 @@ export default function Contacto() {
       setStatus("error");
     }
   };
+
+  // Ocultamos el mensaje de éxito después de 4 segundos
+  useEffect(() => {
+    if (status === "ok") {
+      const timer = setTimeout(() => setStatus(null), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
 
   return (
     <section id="contacto" className="contacto-section reveal fade-in">
@@ -123,8 +131,6 @@ export default function Contacto() {
             <p>Enviando…</p>
           </div>
         )}
-
-        
       </form>
     </section>
   );
