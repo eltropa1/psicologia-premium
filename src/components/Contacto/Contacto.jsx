@@ -99,13 +99,32 @@ export default function Contacto() {
         <button type="submit">Enviar</button>
 
         {/* Mensaje de estado */}
+        {/* Mensaje de estado elegante */}
         {status === "ok" && (
-          <p className="contacto-exito">Mensaje enviado correctamente 🎉</p>
+          <div className="contacto-alert contacto-alert-success">
+            <span className="icon">✔</span>
+            <p>Mensaje enviado correctamente. Gracias por escribir.</p>
+          </div>
         )}
+
         {status === "error" && (
-          <p className="contacto-error">Hubo un error al enviar el mensaje.</p>
+          <div className="contacto-alert contacto-alert-error">
+            <span className="icon">✖</span>
+            <p>
+              Hubo un error al enviar tu mensaje. Por favor, inténtalo más
+              tarde.
+            </p>
+          </div>
         )}
-        {status === "enviando" && <p>Enviando...</p>}
+
+        {status === "enviando" && (
+          <div className="contacto-alert contacto-alert-sending">
+            <span className="icon">⏳</span>
+            <p>Enviando…</p>
+          </div>
+        )}
+
+        
       </form>
     </section>
   );

@@ -66,3 +66,56 @@
   margin-top: 10px;
   font-weight: bold;
 }
+
+/* ==========================
+   ALERTAS DE CONTACTO
+   ========================== */
+
+.contacto-alert {
+  margin-top: 15px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  animation: fadeSlideIn 0.4s ease forwards;
+}
+
+/* Éxito */
+.contacto-alert-success {
+  background: #e6f9ef;
+  border: 1px solid #8ad4a0;
+  color: #2d6a40;
+}
+
+/* Error */
+.contacto-alert-error {
+  background: #fde8e8;
+  border: 1px solid #f5a7a7;
+  color: #9c2a2a;
+}
+
+/* Enviando */
+.contacto-alert-sending {
+  background: #f4f0ff;
+  border: 1px solid #c9b7f7;
+  color: #5d4a99;
+}
+
+.contacto-alert .icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Animación suave */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
