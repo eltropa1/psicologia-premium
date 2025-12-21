@@ -16,6 +16,15 @@
   margin: 0;
 }
 
+/* Logo dentro del header */
+.logo-header {
+  height: 48px;     /* Ajusta a 40–50 px si quieres */
+  width: auto;
+  object-fit: contain;
+  display: block;
+  cursor: pointer;
+}
+
 /* Menu escritorio */
 .nav-desktop a {
   margin-left: 20px;

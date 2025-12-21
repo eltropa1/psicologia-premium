@@ -24,7 +24,13 @@ export default function Header() {
 
   return (
     <header className="header">
-      <h3 className="header-title">Caridad Fresneda</h3>
+      {/* Añadir logo  */}
+      <img
+        src="/Logo-1.png"
+        alt="Caridad Fresneda Pastrana Psicóloga"
+        className="logo-header"
+        onClick={() => scrollToSection("top")}
+      />
 
       {/* NAV ESCRITORIO */}
       <nav className="nav-desktop">
@@ -51,11 +57,46 @@ export default function Header() {
         <nav className="nav-mobile">
           {isHome ? (
             <>
-              <a onClick={() => { handleNav("sobre-mi"); setMobileMenu(false); }}>Sobre mí</a>
-              <a onClick={() => { handleNav("servicios"); setMobileMenu(false); }}>Servicios</a>
-              <a onClick={() => { handleNav("testimonios"); setMobileMenu(false); }}>Testimonios</a>
-              <a onClick={() => { handleNav("blog"); setMobileMenu(false); }}>Blog</a>
-              <a onClick={() => { handleNav("contacto"); setMobileMenu(false); }}>Contacto</a>
+              <a
+                onClick={() => {
+                  handleNav("sobre-mi");
+                  setMobileMenu(false);
+                }}
+              >
+                Sobre mí
+              </a>
+              <a
+                onClick={() => {
+                  handleNav("servicios");
+                  setMobileMenu(false);
+                }}
+              >
+                Servicios
+              </a>
+              <a
+                onClick={() => {
+                  handleNav("testimonios");
+                  setMobileMenu(false);
+                }}
+              >
+                Testimonios
+              </a>
+              <a
+                onClick={() => {
+                  handleNav("blog");
+                  setMobileMenu(false);
+                }}
+              >
+                Blog
+              </a>
+              <a
+                onClick={() => {
+                  handleNav("contacto");
+                  setMobileMenu(false);
+                }}
+              >
+                Contacto
+              </a>
             </>
           ) : (
             <Link to="/">Inicio</Link>
