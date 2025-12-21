@@ -54,7 +54,7 @@ export default function Home() {
           BLOQUE FOTO PARA VERSIÓN MÓVIL
           (restaurado exactamente como antes)
          =============================== */}
-      <div className="hero-mobile">
+      <div className="hero-mobile reveal fade-in delay-1">
         <img
           src={fotoCaridad}
           alt="Caridad Fresneda Psicóloga"

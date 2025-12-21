@@ -1,16 +1,22 @@
-/* =============== HERO ESCRITORIO =============== */
+/* ====================================================================
+   HERO ESCRITORIO
+   - Fondo con imagen y blur suave
+   - Tarjeta centrada
+   ==================================================================== */
 .hero {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 100px 20px;
+
+  /* Imagen de fondo escritorio */
   background-image: url("https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?auto=format&fit=crop&w=1400&q=80");
   background-size: cover;
   background-position: center;
   position: relative;
 }
 
-/* Suavizado de fondo */
+/* Capa blanca semitransparente sobre el fondo → efecto elegante */
 .hero::before {
   content: "";
   position: absolute;
@@ -22,7 +28,9 @@
   backdrop-filter: blur(3px);
 }
 
-/* Tarjeta */
+/* ------------------------------
+   TARJETA DEL HERO ESCRITORIO
+   ------------------------------ */
 .hero-card {
   position: relative;
   background: white;
@@ -40,13 +48,14 @@
   margin-bottom: 10px;
 }
 
-/* Línea añadida simplemente para el subtítulo */
+/* Subtítulo del Hero */
 .hero-title2 {
   font-size: 1.1rem;
   margin-bottom: 15px;
   color: #444;
 }
 
+/* Botón principal */
 .btn-principal {
   padding: 12px 25px;
   border: none;
@@ -63,18 +72,9 @@
   color: white;
 }
 
-/* OCULTAR HERO-MOBILE EN ESCRITORIO */
-@media (min-width: 769px) {
-  .hero-mobile {
-    display: none !important;
-  }
-}
-
-
-/* ======================================================
-   FOTO EN ESCRITORIO PARA HERO
-   ====================================================== */
-
+/* ====================================================================
+   HERO DESKTOP — FOTO (ACTUALMENTE OCULTA)
+   ==================================================================== */
 .hero-desktop {
   display: flex;
   align-items: center;
@@ -83,34 +83,44 @@
   z-index: 2;
 }
 
+/* Foto del Hero escritorio (no usada actualmente) */
 .hero-desktop-foto img {
   width: 320px;
   height: auto;
   border-radius: 18px;
   object-fit: cover;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  display: none; /* Oculto por defecto */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  display: none; /* oculto */
 }
 
+/* Ocultar contenedor entero */
 .hero-desktop-foto {
-  display: none !important; /* Ocultar todo el contenedor */
+  display: none !important;
 }
 
-
-
-/* =============== MÓVIL (ASÍ ERA TU DISEÑO ORIGINAL) =============== */
-@media (max-width: 768px) {
-  .hero {
-    display: none !important; /* El Hero no se muestra en móvil */
+/* ====================================================================
+   OCULTAR HERO COMPLETO EN MÓVIL
+   ==================================================================== */
+@media (min-width: 769px) {
+  /* Oculta el hero móvil en escritorio */
+  .hero-mobile {
+    display: none !important;
   }
 }
 
-/* ==========================================
-   BLOQUE HERO SOLO MÓVIL (foto + frase)
-   ========================================== */
+/* Móvil → oculta Hero escritorio */
+@media (max-width: 768px) {
+  .hero {
+    display: none !important;
+  }
+}
+
+/* ====================================================================
+   HERO MÓVIL (foto + frase + botón)
+   ==================================================================== */
 
 .hero-mobile {
-  display: none;
+  display: none; /* oculto por defecto, visible solo en móvil */
 }
 
 @media (max-width: 768px) {
@@ -120,15 +130,30 @@
     padding: 20px 20px 40px;
   }
 
+  /* ------------------------------
+     FOTO — aparece con animación
+     ------------------------------ */
   .hero-mobile-foto {
     width: 75%;
     max-width: 260px;
     border-radius: 18px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     margin: 0 auto 15px;
     display: block;
+
+    /* Animación inicial */
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
   }
 
+  /* Cuando el reveal se activa */
+  .hero-mobile.reveal.visible .hero-mobile-foto {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Frase manuscrita */
   .hero-mobile-frase {
     font-style: italic;
     font-size: 1.1rem;
@@ -138,8 +163,22 @@
     color: #333;
   }
 
+  /* Botón móvil */
   .hero-mobile-btn {
     margin-top: 10px;
   }
-}
 
+  /* ------------------------------
+     ANIMACIÓN DEL BLOQUE COMPLETO
+     ------------------------------ */
+  .hero-mobile.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .hero-mobile.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

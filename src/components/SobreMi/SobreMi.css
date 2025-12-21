@@ -24,23 +24,45 @@
   margin-bottom: 20px;
 }
 
-.foto-psicologa {
-  width: 320px;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  position: relative;
-  z-index: 2;
-  order:2;
+/* Contenedor de la foto → controla la animación */
+.sobre-mi-foto {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
+/* Foto de escritorio (tamaño perfecto y elegante) */
+.foto-psicologa {
+  width: 340px;       /* tamaño ideal */
+  max-width: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  opacity: 0;         /* requerido para reveal */
+  transform: translateY(25px) scale(0.97);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Cuando está visible */
+.reveal.visible .foto-psicologa {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+
 /* ===================== SOLO MÓVIL ===================== */
+/* MÓVIL: foto oculta según tu diseño original */
+
+
 @media (max-width: 768px) {
   .sobre-mi {
     flex-direction: column;
     padding-top: 80px;
     padding-bottom: 140px;  /* espacio extra para la frase */
+  }
+  
+  .sobre-mi-foto {
+    display: none;
   }
 
   .foto-psicologa {
@@ -60,8 +82,8 @@
     transform: translateX(-50%) rotate(-12deg);
     font-family: "Dancing Script", cursive !important;
     font-size: 2.6rem;
-    color: #000000;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    color: #a77575;
+    text-shadow: 0 2px 6px rgba(52, 12, 162, 0.25);
     z-index: 5;
     opacity: 0;
     animation: fraseFade 1.3s ease forwards;
@@ -83,5 +105,11 @@
 @media (min-width: 769px) {
   .sobre-mi::before {
     display: none;
+  }
+  .sobre-mi-contenido {
+    order: 1; /* Asegura que el texto esté a la izquierda */
+  } 
+  .sobre-mi-foto {
+    order: 2; /* Asegura que la foto esté a la derecha */
   }
 }
