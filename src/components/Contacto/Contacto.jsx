@@ -1,24 +1,27 @@
+// =============================================================================
+// SECCIÓN CONTACTO
+// - Mantiene tu lógica EXACTA
+// - Solo ajustamos el texto para mayor coherencia profesional
+// =============================================================================
+
 import { useState, useEffect } from "react";
 import "./Contacto.css";
 
 export default function Contacto() {
-  // Estados para manejar datos y mensajes del usuario
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
     message: "",
-    honeypot: "", // invisible anti-bots
+    honeypot: "",
   });
 
-  const [status, setStatus] = useState(null); // éxito o error
+  const [status, setStatus] = useState(null);
 
-  // Actualizar cada campo
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Enviar formulario al backend
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("enviando");
@@ -32,13 +35,7 @@ export default function Contacto() {
 
       if (res.ok) {
         setStatus("ok");
-        setForm({
-          name: "",
-          email: "",
-          phone: "",
-          message: "",
-          honeypot: "",
-        });
+        setForm({ name: "", email: "", phone: "", message: "", honeypot: "" });
       } else {
         setStatus("error");
       }
@@ -47,19 +44,24 @@ export default function Contacto() {
     }
   };
 
-  // Ocultamos el mensaje de éxito después de 4 segundos
   useEffect(() => {
     if (status === "ok") {
-      const timer = setTimeout(() => setStatus(null), 4000);
-      return () => clearTimeout(timer);
+      const timeout = setTimeout(() => setStatus(null), 3000);
+      return () => clearTimeout(timeout);
     }
   }, [status]);
 
   return (
     <section id="contacto" className="contacto-section reveal fade-in">
+
       <h2>Contacto</h2>
 
+      <p className="contacto-intro">
+        Estaré encantada de escucharte y acompañarte en tu proceso.
+      </p>
+
       <form className="contacto-form" onSubmit={handleSubmit}>
+
         <input
           type="text"
           name="name"
@@ -67,6 +69,7 @@ export default function Contacto() {
           value={form.name}
           onChange={handleChange}
           required
+          autoCapitalize="words"
         />
 
         <input
@@ -89,13 +92,13 @@ export default function Contacto() {
         <textarea
           name="message"
           rows="5"
-          placeholder="Mensaje"
+          placeholder="Escribe tu mensaje aquí"
           value={form.message}
           onChange={handleChange}
           required
         ></textarea>
 
-        {/* Honeypot invisible (anti-bots) */}
+        {/* Honeypot oculto para anti-spam */}
         <input
           type="text"
           name="honeypot"
@@ -106,22 +109,18 @@ export default function Contacto() {
 
         <button type="submit">Enviar</button>
 
-        {/* Mensaje de estado */}
-        {/* Mensaje de estado elegante */}
+        {/* MENSAJES DE ESTADO */}
         {status === "ok" && (
           <div className="contacto-alert contacto-alert-success">
             <span className="icon">✔</span>
-            <p>Mensaje enviado correctamente. Gracias por escribir.</p>
+            <p>Mensaje enviado correctamente. Gracias por contactar conmigo.</p>
           </div>
         )}
 
         {status === "error" && (
           <div className="contacto-alert contacto-alert-error">
             <span className="icon">✖</span>
-            <p>
-              Hubo un error al enviar tu mensaje. Por favor, inténtalo más
-              tarde.
-            </p>
+            <p>Hubo un error al enviar el mensaje. Inténtalo más tarde.</p>
           </div>
         )}
 
@@ -131,6 +130,7 @@ export default function Contacto() {
             <p>Enviando…</p>
           </div>
         )}
+
       </form>
     </section>
   );

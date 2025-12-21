@@ -1,4 +1,4 @@
-export function scrollToSection(id) {
+export  function scrollToSection(id) {
   const element = document.getElementById(id);
   if (element) {
     element.scrollIntoView({ behavior: "smooth" });

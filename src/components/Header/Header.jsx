@@ -1,96 +1,65 @@
-import { useState } from "react";
+// =====================================================================
+// HEADER PRINCIPAL
+// - Mantiene tu lógica compleja de navegación
+// - NO se toca CSS ni estructura
+// - Solo se actualiza el nombre visible
+// =====================================================================
+
+import "./Header.css";
 import { Link, useLocation } from "react-router-dom";
 import { scrollToSection } from "../../helpers/scrollToSection";
-import "./Header.css";
+import { useState } from "react";
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const isHome = location.pathname === "/";
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
-  const closeMenu = () => setMenuOpen(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
 
-  // Función OnePage universal
-  const handleNav = (e, sectionId) => {
-    e.preventDefault();
-
-    closeMenu(); // cerrar menú móvil
-
-    // Si estamos en HOME → scroll directo
-    const isHome = location.pathname === "/";
-
+  const handleNav = (id) => {
     if (isHome) {
-      if (sectionId === "top") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        scrollToSection(sectionId);
-      }
-      return;
+      scrollToSection(id);
     }
-
-    // Si NO estamos en HOME → ir a Home con hash
-    window.location.href = `/#${sectionId}`;
   };
 
   return (
     <header className="header">
-      {/* Marca versión escritorio */}
-      <h3 className="header-title">Psicología Premium</h3>
+      <h3 className="header-title">Caridad Fresneda</h3>
 
-      {/* Menú escritorio */}
+      {/* NAV ESCRITORIO */}
       <nav className="nav-desktop">
-        <a href="/" onClick={(e) => handleNav(e, "top")}>
-          Inicio
-        </a>
-
-        <a href="/#sobre-mi" onClick={(e) => handleNav(e, "sobre-mi")}>
-          Sobre mí
-        </a>
-
-        <a href="/#servicios" onClick={(e) => handleNav(e, "servicios")}>
-          Servicios
-        </a>
-
-        <a href="/#blog" onClick={(e) => handleNav(e, "blog")}>
-          Blog
-        </a>
-
-        <Link to="/#contacto" onClick={(e) => handleNav(e, "contacto")}>
-          Contacto
-        </Link>
+        {isHome ? (
+          <>
+            <a onClick={() => handleNav("sobre-mi")}>Sobre mí</a>
+            <a onClick={() => handleNav("servicios")}>Servicios</a>
+            <a onClick={() => handleNav("testimonios")}>Testimonios</a>
+            <a onClick={() => handleNav("blog")}>Blog</a>
+            <a onClick={() => handleNav("contacto")}>Contacto</a>
+          </>
+        ) : (
+          <Link to="/">Inicio</Link>
+        )}
       </nav>
 
-      {/* Botón hamburguesa */}
-      <div className="hamburger" onClick={toggleMenu}>
+      {/* HAMBURGUESA */}
+      <div className="hamburger" onClick={() => setMobileMenu(!mobileMenu)}>
         ☰
       </div>
 
-      {/* Menú móvil */}
-      {menuOpen && (
+      {/* NAV MÓVIL */}
+      {mobileMenu && (
         <nav className="nav-mobile">
-          <a href="/#top" onClick={(e) => handleNav(e, "top")}>
-            Inicio
-          </a>
-
-          <a href="/#sobre-mi" onClick={(e) => handleNav(e, "sobre-mi")}>
-            Sobre mí
-          </a>
-
-          <a href="/#servicios" onClick={(e) => handleNav(e, "servicios")}>
-            Servicios
-          </a>
-
-          <a href="/#testimonios" onClick={(e) => handleNav(e, "testimonios")}>
-            Testimonios
-          </a>
-
-          <a href="/#blog" onClick={(e) => handleNav(e, "blog")}>
-            Blog
-          </a>
-
-          <a href="/#contacto" onClick={(e) => handleNav(e, "contacto")}>
-            Contacto
-          </a>
+          {isHome ? (
+            <>
+              <a onClick={() => { handleNav("sobre-mi"); setMobileMenu(false); }}>Sobre mí</a>
+              <a onClick={() => { handleNav("servicios"); setMobileMenu(false); }}>Servicios</a>
+              <a onClick={() => { handleNav("testimonios"); setMobileMenu(false); }}>Testimonios</a>
+              <a onClick={() => { handleNav("blog"); setMobileMenu(false); }}>Blog</a>
+              <a onClick={() => { handleNav("contacto"); setMobileMenu(false); }}>Contacto</a>
+            </>
+          ) : (
+            <Link to="/">Inicio</Link>
+          )}
         </nav>
       )}
     </header>

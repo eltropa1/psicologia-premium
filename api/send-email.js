@@ -54,11 +54,12 @@ export default async function handler(req, res) {
   // AUTO-REPLY AL USUARIO
   // ================================================
   const autoReply = {
-    from: `Psicología Premium <${process.env.MAIL_USER}>`,
+    from: `Caridad Fresneda · Psicóloga Sanitaria <${process.env.MAIL_USER}>`,
     to: email,
     subject: "Gracias por tu mensaje ✨",
     html: `
-      <h2>Gracias por contactar conmigo, ${name}.</h2>
+      <h2>Gracias por contactar conmigo, <span style="white-space:pre-line;">${name}</span>.</h2>
+
       <p>He recibido tu mensaje correctamente y te responderé lo antes posible.</p>
       <p style="margin-top:10px">💬 <strong>Tu mensaje:</strong></p>
       <blockquote style="background:#f7f0ea;padding:10px;border-left:4px solid #c49aa8;">

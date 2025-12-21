@@ -1,14 +1,37 @@
+// ===============================================================
+// HERO PRINCIPAL
+// - Mantiene todas tus clases y estructura original
+// - Solo cambia el contenido textual
+// - Usa scroll suave hacia "contacto"
+// ===============================================================
+
 import "./Hero.css";
+import { scrollToSection } from "../../helpers/scrollToSection";
 
 export default function Hero() {
   return (
     <section id="hero" className="hero">
       <div className="hero-card">
-        <h1>Tu bienestar emocional empieza aquí</h1>
+        
+        {/* Nombre profesional actualizado */}
+        <h1>Caridad Fresneda</h1>
+
+        {/* Título profesional debajo del nombre */}
+        <p className="hero-title2">Psicóloga Sanitaria</p>
+
+        {/* Frase principal (tono humano + profesional) */}
         <p>
-          Acompañamiento psicológico profesional con un enfoque cálido, humano y confidencial.
+          Te acompaño a construir bienestar emocional desde el respeto y la autenticidad.
         </p>
-        <button className="btn-principal">Reserva tu sesión</button>
+
+        {/* Botón con scroll suave hacia el formulario de contacto */}
+        <button
+          className="btn-principal"
+          onClick={() => scrollToSection("contacto")}
+        >
+          Contacta conmigo
+        </button>
+
       </div>
     </section>
   );
