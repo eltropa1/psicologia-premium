@@ -1,3 +1,10 @@
+// ==========================================================================
+// HOME ORIGINAL RESTAURADO
+// - Hero: solo escritorio
+// - MobileHeader: nombre y título en móvil
+// - HeroMobile: foto + frase cursiva + botón (solo móvil)
+// ==========================================================================
+
 import Header from "../components/Header/Header";
 import Hero from "../components/Hero/Hero";
 import MobileHeader from "../components/MobileHeader/MobileHeader";
@@ -8,12 +15,17 @@ import Contacto from "../components/Contacto/Contacto";
 import Footer from "../components/Footer/Footer";
 import BlogPreview from "../components/BlogPreview/BlogPreview";
 
-import { Link, useLocation } from "react-router-dom";
-import {React, useEffect} from "react";
+// Foto provisional (se sustituye en el futuro por la foto real)
+import fotoCaridad from "../assets/img/caridad-temp.jpg";
 
+import { useLocation } from "react-router-dom";
+import { React, useEffect } from "react";
+import { scrollToSection } from "../helpers/scrollToSection";
 
 export default function Home() {
   const { hash } = useLocation();
+
+  // Permite navegar con #anclas (scroll suave)
   useEffect(() => {
     if (hash) {
       const id = hash.replace("#", "");
@@ -26,32 +38,53 @@ export default function Home() {
 
   return (
     <>
-      {/* El inico de la pagina*/}
+      {/* TOP */}
       <div id="top"></div>
 
-      {/* Header para escritorio */}
+      {/* HEADER ESCRITORIO + MENU */}
       <Header />
 
-      {/* Hero para escritorio */}
+      {/* HERO - SOLO ESCRITORIO (móvil lo oculta Hero.css) */}
       <Hero />
 
-      {/* Bloque superior con el nombre para móviles */}
+      {/* NOMBRE GRANDE PARA MÓVIL */}
       <MobileHeader />
 
-      {/* Secciones principales */}
+      {/* ===============================
+          BLOQUE FOTO PARA VERSIÓN MÓVIL
+          (restaurado exactamente como antes)
+         =============================== */}
+      <div className="hero-mobile">
+        <img
+          src={fotoCaridad}
+          alt="Caridad Fresneda Psicóloga"
+          className="hero-mobile-foto"
+        />
+
+        <p className="hero-mobile-frase">
+          “Te acompaño a construir bienestar emocional desde el respeto y la autenticidad.”
+        </p>
+
+        <button
+          className="btn-principal hero-mobile-btn"
+          onClick={() => scrollToSection("contacto")}
+        >
+          Contacta conmigo
+        </button>
+      </div>
+
+      {/* SECCIONES PRINCIPALES */}
       <SobreMi />
       <Servicios />
       <Testimonios />
 
-      {/* ================================
-          SECCIÓN BLOG (versión Home)
-          ================================ */}
-     <BlogPreview /> 
+      {/* BLOG */}
+      <BlogPreview />
 
-      {/* Sección Contacto */}
+      {/* CONTACTO */}
       <Contacto />
 
-      {/* Footer */}
+      {/* FOOTER */}
       <Footer />
     </>
   );
