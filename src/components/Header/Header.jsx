@@ -53,56 +53,46 @@ export default function Header() {
       </div>
 
       {/* NAV MÓVIL */}
-      {mobileMenu && (
-        <nav className="nav-mobile">
-          {isHome ? (
-            <>
-              <a
-                onClick={() => {
-                  handleNav("sobre-mi");
-                  setMobileMenu(false);
-                }}
-              >
-                Sobre mí
-              </a>
-              <a
-                onClick={() => {
-                  handleNav("servicios");
-                  setMobileMenu(false);
-                }}
-              >
-                Servicios
-              </a>
-              <a
-                onClick={() => {
-                  handleNav("testimonios");
-                  setMobileMenu(false);
-                }}
-              >
-                Testimonios
-              </a>
-              <a
-                onClick={() => {
-                  handleNav("blog");
-                  setMobileMenu(false);
-                }}
-              >
-                Blog
-              </a>
-              <a
-                onClick={() => {
-                  handleNav("contacto");
-                  setMobileMenu(false);
-                }}
-              >
-                Contacto
-              </a>
-            </>
-          ) : (
-            <Link to="/">Inicio</Link>
-          )}
-        </nav>
-      )}
+{mobileMenu && (
+  <nav className="nav-mobile">
+
+    {/* 🔹 Inicio SIEMPRE visible en menú móvil */}
+    <Link
+  to="/"
+  onClick={() => {
+    window.location.hash = "";     // limpia cualquier ancla previa
+    setMobileMenu(false);
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 50); // pequeño delay para asegurar que React cargó el home
+  }}
+>
+  Inicio
+</Link>
+
+
+    {isHome ? (
+      <>
+        <a onClick={() => { handleNav("sobre-mi"); setMobileMenu(false); }}>
+          Sobre mí
+        </a>
+        <a onClick={() => { handleNav("servicios"); setMobileMenu(false); }}>
+          Servicios
+        </a>
+        <a onClick={() => { handleNav("testimonios"); setMobileMenu(false); }}>
+          Testimonios
+        </a>
+        <a onClick={() => { handleNav("blog"); setMobileMenu(false); }}>
+          Blog
+        </a>
+        <a onClick={() => { handleNav("contacto"); setMobileMenu(false); }}>
+          Contacto
+        </a>
+      </>
+    ) : null}
+  </nav>
+)}
+
     </header>
   );
 }
