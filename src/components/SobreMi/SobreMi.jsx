@@ -20,6 +20,7 @@ export default function SobreMi() {
           alt="Caridad Fresneda"
           className="foto-psicologa"
         />
+        
       </div>
 
       {/* TEXTO A LA IZQUIERDA */}
@@ -65,21 +66,78 @@ export default function SobreMi() {
           </button>
 
           {openFormacion && (
-            <div className="formacion-lista">
-              <ul>
-                <li>
-                  Psicóloga Sanitaria Habilitada por la Consejería de Madrid.
-                </li>
-                <li>Experto en Psicoterapia Integradora EMDR (2024).</li>
-                <li>Experto en Terapias Contextuales (2023).</li>
-                <li>Trastornos del Apego (2022).</li>
-                <li>Terapia de Pareja Integrativa (2021).</li>
-                <li>Intervención Clínica en Adicciones (2020).</li>
-                <li>Intervención Psicológica Domiciliaria (2018).</li>
-                <li>Especialización en Duelo (2017).</li>
-                <li>Máster en Psicología Clínica (2012).</li>
-                <li>Licenciada en Psicología (2005–2010).</li>
-              </ul>
+            <div className="formacion-timeline reveal delay-2">
+              <div className="formacion-item">
+                <span className="formacion-year">Actual</span>
+                <p>
+                  Psicóloga Sanitaria Habilitada · Consejería de Sanidad de
+                  Madrid
+                </p>
+              </div>
+
+              <div className="formacion-item">
+                <span className="formacion-year">2024</span>
+                <p>
+                  Experto en Psicoterapia Integradora: Trauma, Apego y EMDR ·
+                  UDIMA – NB Psicólogos
+                </p>
+              </div>
+
+              <div className="formacion-item">
+                <span className="formacion-year">2023</span>
+                <p>
+                  Experto en Terapias Contextuales y de Tercera Generación ·
+                  AEFDP
+                </p>
+              </div>
+
+              <div className="formacion-item">
+                <span className="formacion-year">2022</span>
+                <p>
+                  Trastornos del Apego a lo largo del ciclo vital · Aula
+                  Psimática
+                </p>
+              </div>
+
+              <div className="formacion-item">
+                <span className="formacion-year">2021</span>
+                <p>Terapia de Pareja Integrativa · AEPSIS</p>
+              </div>
+
+              <div className="formacion-item">
+                <span className="formacion-year">2020</span>
+                <p>Intervención Clínica en Adicciones · COP Madrid</p>
+              </div>
+
+              <div className="formacion-item">
+                <span className="formacion-year">2018</span>
+                <p>Intervención Psicológica Domiciliaria · COP Madrid</p>
+              </div>
+
+              <div className="formacion-item">
+                <span className="formacion-year">2017</span>
+                <p>Especialización en Duelo · COP Madrid</p>
+              </div>
+
+              <div className="formacion-item">
+                <span className="formacion-year">2012</span>
+                <p>
+                  Máster en Psicología de Práctica Clínica Cognitivo-Conductual
+                  · AEPCC
+                </p>
+              </div>
+
+              <div className="formacion-item">
+                <span className="formacion-year">2010</span>
+                <p>Máster en Grafología · C.E.S. Sócrates</p>
+              </div>
+
+              <div className="formacion-item">
+                <span className="formacion-year">2005–2010</span>
+                <p>
+                  Licenciada en Psicología · Universidad Pontificia de Comillas
+                </p>
+              </div>
             </div>
           )}
         </div>

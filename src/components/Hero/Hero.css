@@ -182,3 +182,33 @@
     transform: translateY(0);
   }
 }
+/* FRASE MANUSCRITA SOLO MÓVIL */
+.frase-manuscrita-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .frase-manuscrita-mobile {
+    display: block;
+    font-family: "Dancing Script", cursive;
+    font-size: 1.9rem;
+    color: #a77575;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: rotate(-6deg);
+    animation: fraseMobileFade 1.2s ease forwards;
+  }
+
+  @keyframes fraseMobileFade {
+    from {
+      opacity: 0;
+      transform: translateY(8px) rotate(-6deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) rotate(-6deg);
+    }
+  }
+}

@@ -60,7 +60,8 @@ export default function Home() {
           alt="Caridad Fresneda Psicóloga"
           className="hero-mobile-foto"
         />
-
+        
+        {/* FRASE MANUSCRITA SOLO EN MÓVIL */}
         <p className="hero-mobile-frase">
           “Te acompaño a construir bienestar emocional desde el respeto y la autenticidad.”
         </p>

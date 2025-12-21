@@ -72,22 +72,41 @@
     box-shadow: 0 12px 30px rgba(0,0,0,0.18);
     display: none !important; /* Ocultar la foto en móvil */
   }
+/* ===============================================
+   FRASE MANUSCRITA DEBAJO DE LA FOTO (ESCRITORIO)
+   =============================================== */
 
-  /* FRASE MANUSCRITA SOBRE LA FOTO */
-  .sobre-mi::before {
-    content: "Tu bienestar importa";
-    position: absolute;
-    bottom: 1030px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-12deg);
-    font-family: "Dancing Script", cursive !important;
-    font-size: 2.6rem;
-    color: #a77575;
-    text-shadow: 0 2px 6px rgba(52, 12, 162, 0.25);
-    z-index: 5;
+.frase-manuscrita {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.2rem;
+  color: #a77575;
+  text-align: center;
+  margin-top: 12px;
+  transform: rotate(-6deg);
+  opacity: 0;
+  animation: fraseFade 1.3s ease forwards;
+}
+
+/* Animación suave */
+@keyframes fraseFade {
+  from {
     opacity: 0;
-    animation: fraseFade 1.3s ease forwards;
+    transform: translateY(8px) rotate(-6deg);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(-6deg);
+  }
+}
+
+/* OCULTAR EN MÓVIL */
+@media (max-width: 768px) {
+  .frase-manuscrita {
+    display: none;
+  }
+}
+
+ 
 
   @keyframes fraseFade {
     from {
@@ -111,5 +130,69 @@
   } 
   .sobre-mi-foto {
     order: 2; /* Asegura que la foto esté a la derecha */
+  }
+}
+
+/* ============================================================
+   TIMELINE DE FORMACIÓN
+   ============================================================ */
+
+.formacion-timeline {
+  position: relative;
+  padding-left: 25px;
+  margin-top: 20px;
+  border-left: 3px solid #eac7d3; /* línea vertical pastel */
+}
+
+.formacion-item {
+  margin-bottom: 22px;
+  position: relative;
+}
+
+/* Punto en la línea */
+.formacion-item::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-color: #eac7d3;
+  border-radius: 50%;
+  position: absolute;
+  left: -29px;
+  top: 4px;
+}
+
+.formacion-year {
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: #c49aa8;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.formacion-item p {
+  margin: 0;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+  .formacion-timeline {
+    padding-left: 20px;
+    border-width: 2px;
+  }
+
+  .formacion-item::before {
+    width: 10px;
+    height: 10px;
+    left: -24px;
+  }
+
+  .formacion-year {
+    font-size: 0.9rem;
+  }
+   /* FRASE MANUSCRITA SOBRE LA FOTO */
+  .sobre-mi::before {
+    bottom: 2200px;
   }
 }
