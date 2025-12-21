@@ -38,18 +38,21 @@ export default function BlogList() {
 
       <div className="blog-grid">
         {articles.map((art, i) => (
-          <div key={art.id} className={`post reveal delay-${i + 1}`}>
-            <img src={art.image_url} alt={art.title} />
+          <Link
+  key={art.id}
+  to={`/blog/${art.slug}`}
+  className={`post reveal delay-${i + 1}`}
+  style={{ textDecoration: "none", color: "inherit" }}
+>
+  <img src={art.image_url} alt={art.title} />
 
-            <div className="post-content">
-              <h3>{art.title}</h3>
-              <p>{art.description}</p>
-              <br />
-              <Link to={`/blog/${art.slug}`} className="leer-mas">
-                Leer más ahora→
-              </Link>
-            </div>
-          </div>
+  <div className="post-content">
+    <h3>{art.title}</h3>
+    <p>{art.description}</p>
+    <span className="leer-mas">Leer más →</span>
+  </div>
+</Link>
+
         ))}
       </div>
       

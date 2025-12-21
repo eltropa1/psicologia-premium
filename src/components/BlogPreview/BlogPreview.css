@@ -61,3 +61,33 @@
   cursor: pointer;
   opacity: 100%;
 }
+
+/* ======================================================================
+   Envolver toda la tarjeta en un Link NO debe romper el diseño
+   Por eso le damos estilo de bloque (antes era un <div>)
+====================================================================== */
+.post-link-wrapper {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Asegurar que la imagen mantiene su estilo original */
+.post-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* Cursor como botón interactivo */
+.post-link-wrapper {
+  cursor: pointer;
+}
+
+/* Hover elegante (opcional pero recomendado) */
+.post-link-wrapper:hover {
+  transform: translateY(-4px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+}
