@@ -16,7 +16,7 @@ import Footer from "../components/Footer/Footer";
 import BlogPreview from "../components/BlogPreview/BlogPreview";
 
 // Foto provisional (se sustituye en el futuro por la foto real)
-import fotoCaridad from "../assets/img/caridad-temp.jpg";
+import fotoCaridad from "../assets/img/caridad-temp.webp";
 
 import { useLocation } from "react-router-dom";
 import { React, useEffect } from "react";
@@ -72,6 +72,8 @@ export default function Home() {
           Contacta conmigo
         </button>
       </div>
+
+      
 
       {/* SECCIONES PRINCIPALES */}
       <SobreMi />

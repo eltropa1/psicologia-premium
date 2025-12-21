@@ -6,7 +6,7 @@
 
 import "./Hero.css";
 import { scrollToSection } from "../../helpers/scrollToSection";
-import fotoCaridad from "../../assets/img/caridad-temp.jpg";
+import fotoCaridad from "../../assets/img/caridad-temp.webp";
 
 export default function Hero() {
   return (
