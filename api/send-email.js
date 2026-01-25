@@ -65,7 +65,7 @@ export default async function handler(req, res) {
       <blockquote style="background:#f7f0ea;padding:10px;border-left:4px solid #c49aa8;">
         ${message}
       </blockquote>
-      <p style="margin-top:20px;">Un saludo,<br><strong>María López</strong><br>Psicóloga Colegiada</p>
+      <p style="margin-top:20px;">Un saludo,<br><strong>Caridad Fresneda</strong><br>Psicóloga Colegiada</p>
     `,
   };
 
