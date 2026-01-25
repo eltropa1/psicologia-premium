@@ -1,0 +1,41 @@
+.blog-post-nav {
+  position: fixed;
+  bottom: 20px;      /* EXACTAMENTE igual que ScrollTopButton */
+  left: 20px;
+
+  z-index: 9999;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 16px;
+  border-radius: 999px;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  background: #c49aa8;   /* mismo color que el botón de scroll */
+  color: white;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+
+  opacity: 0;
+  transform: scale(0.9);
+  animation: fadeInButton 0.3s ease forwards;
+}
+
+.blog-post-nav:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+  .blog-post-nav {
+    bottom: 16px;
+    left: 16px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+}

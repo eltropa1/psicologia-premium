@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import BlogHeader from "../components/Blog/BlogHeader";
 import ScrollTopButton from "../components/ScrollTopButton/ScrollTopButton";
+import BlogPostNavigation from "../components/BlogPostNavigation/BlogPostNavigation";
+import "../components/BlogPostNavigation/BlogPostNavigation.css";
+
 
 // ⬅️ IMPORTA EL HOOK
 import useReveal from "../hooks/useReveal";
@@ -14,6 +17,21 @@ export default function BlogPost() {
 
   // ⬅️ ACTIVA REVEAL CUANDO EL POST SE CARGUE
   useReveal([post]);
+
+  useEffect(() => {
+    if (!post) return;
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    // esperamos dos frames para asegurar estado inicial + transición perceptible
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      revealElements.forEach((el) => {
+        el.classList.add("visible");
+      });
+    });
+  });
+}, [post]);
 
   useEffect(() => {
     async function loadPost() {
@@ -37,55 +55,45 @@ export default function BlogPost() {
 
   return (
     <>
-    <BlogHeader />
-    <ScrollTopButton />
-    
-    <section className="blog-post-section" style={{ padding: "80px 40px" }}>
+      <BlogHeader />
+      <ScrollTopButton />
+
+      <section className="blog-post-section" style={{ padding: "80px 40px" }}>
+        <h1
+          className="reveal"
+          style={{ textAlign: "center", marginBottom: "20px" }}
+        >
+          {post.title}
+        </h1>
+
+        <BlogPostNavigation />
+        
+        <img
+          src={post.image_url}
+          alt={post.title}
+          className="reveal delay-1"
+          style={{
+            width: "100%",
+            maxWidth: "900px",
+            margin: "20px auto",
+            display: "block",
+            borderRadius: "12px",
+          }}
+        />
+
+
+        <article
+          className="reveal delay-2"
+          style={{
+            maxWidth: "900px",
+            margin: "40px auto",
+            fontSize: "1.2rem",
+            lineHeight: "1.7",
+          }}
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
       
-      <h1
-        className="reveal"
-        style={{ textAlign: "center", marginBottom: "20px" }}
-      >
-        {post.title}
-      </h1>
-
-      <img
-        src={post.image_url}
-        alt={post.title}
-        className="reveal delay-1"
-        style={{
-          width: "100%",
-          maxWidth: "900px",
-          margin: "20px auto",
-          display: "block",
-          borderRadius: "12px"
-        }}
-      />
-
-      <article
-        className="reveal delay-2"
-        style={{
-          maxWidth: "900px",
-          margin: "40px auto",
-          fontSize: "1.2rem",
-          lineHeight: "1.7"
-        }}
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
-      <Link
-  to="/blog"
-  className="volver reveal delay-3"
-  style={{
-    display: "block",
-    textAlign: "center",
-    marginTop: "40px",
-  }}
->
-  ← Ver todos los artículos
-</Link>
-
-      
-    </section>
-   </> 
+      </section>
+    </>
   );
 }

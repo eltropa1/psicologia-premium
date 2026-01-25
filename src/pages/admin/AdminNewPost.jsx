@@ -16,6 +16,17 @@ import { useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Editor WYSIWYG compatible con React 19
+ */
+import { useEditor, EditorContent } from "@tiptap/react";
+
+import StarterKit from "@tiptap/starter-kit";
+import LinkExtension from "@tiptap/extension-link";
+import EditorToolbar from "./EditorToolbar"
+
+
+
 export default function AdminNewPost() {
   const navigate = useNavigate();
 
@@ -26,6 +37,28 @@ export default function AdminNewPost() {
   const [imageFile, setImageFile] = useState(null); // archivo subido
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
+
+  /**
+ * ============================================================
+ *  EDITOR DE TEXTO ENRIQUECIDO (TIPTAP)
+ *  - Guarda HTML limpio en `content`
+ *  - Permite títulos, listas, negrita, etc.
+ * ============================================================
+ */
+
+const editor = useEditor({
+  extensions: [
+    StarterKit,
+    LinkExtension.configure({
+      openOnClick: false,
+    }),
+  ],
+  content,
+  onUpdate: ({ editor }) => {
+    setContent(editor.getHTML());
+  },
+});
+
 
   /**
    * ============================================================
@@ -172,20 +205,30 @@ export default function AdminNewPost() {
             CAMPO: CONTENIDO
         ======================== */}
         <label style={{ fontWeight: "bold" }}>Contenido (HTML)</label>
-        <textarea
-          required
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          rows="10"
-          style={{
-            width: "100%",
-            padding: "12px",
-            marginBottom: "15px",
-            borderRadius: "8px",
-            border: "1px solid #ddd",
-            lineHeight: "1.5",
-          }}
-        ></textarea>
+       
+       
+
+<label style={{ fontWeight: "bold", marginBottom: "8px", display: "block" }}>
+  Contenido del artículo
+</label>
+
+  {/* añade toolbar*/}
+<EditorToolbar editor={editor} />
+<div
+  style={{
+    border: "1px solid #ddd",
+    borderRadius: "8px",
+    padding: "10px",
+    marginBottom: "20px",
+    background: "white",
+  }}
+>
+  <EditorContent editor={editor} />
+</div>
+
+       
+
+      
 
         {/* =======================
             CAMPO: IMAGEN DESTACADA

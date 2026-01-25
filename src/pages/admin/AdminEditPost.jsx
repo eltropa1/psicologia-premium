@@ -16,6 +16,10 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 import { useNavigate, useParams } from "react-router-dom";
+import { useEditor, EditorContent } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import EditorToolbar from "./EditorToolbar";
+import LinkExtension from "@tiptap/extension-link";
 
 export default function AdminEditPost() {
   const navigate = useNavigate();
@@ -26,6 +30,44 @@ export default function AdminEditPost() {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
   const [newImageFile, setNewImageFile] = useState(null);
+  /**
+   * Evita reinyectar el contenido en cada render
+   */
+  const [contentLoaded, setContentLoaded] = useState(false);
+
+  /**
+   * ============================================================
+   *  EDITOR WYSIWYG (TIPTAP)
+   *  - Se inicializa siempre (TipTap lo requiere)
+   *  - El contenido se carga cuando `post` esté disponible
+   * ============================================================
+   */
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      LinkExtension.configure({
+        openOnClick: false,
+      }),
+    ],
+    content: "", // vacío al inicio
+    onUpdate: ({ editor }) => {
+      // Evitar actualizar estado si aún no hay post
+      if (!post) return;
+      setPost({ ...post, content: editor.getHTML() });
+    },
+  });
+
+  /**
+   * ============================================================
+   *  Inyectar contenido SOLO una vez cuando se carga el post
+   * ============================================================
+   */
+  useEffect(() => {
+    if (editor && post?.content && !contentLoaded) {
+      editor.commands.setContent(post.content);
+      setContentLoaded(true);
+    }
+  }, [editor, post, contentLoaded]);
 
   /**
    * ============================================================
@@ -44,6 +86,11 @@ export default function AdminEditPost() {
         console.error("Error al cargar artículo:", error);
       } else {
         setPost(data);
+
+        // Cuando el post llega, inyectar el HTML en el editor
+        if (editor && data?.content) {
+          editor.commands.setContent(data.content);
+        }
       }
 
       setLoading(false);
@@ -131,7 +178,9 @@ export default function AdminEditPost() {
         margin: "auto",
       }}
     >
-      <h2 style={{ marginBottom: "20px", color: "#c49aa8" }}>Editar artículo</h2>
+      <h2 style={{ marginBottom: "20px", color: "#c49aa8" }}>
+        Editar artículo
+      </h2>
 
       <form onSubmit={handleSave}>
         {/* ===============================
@@ -173,21 +222,34 @@ export default function AdminEditPost() {
         {/* ===============================
             CAMPO: CONTENIDO
         ================================ */}
-        <label style={{ fontWeight: "bold" }}>Contenido (HTML)</label>
-        <textarea
-          required
-          value={post.content}
-          onChange={(e) => setPost({ ...post, content: e.target.value })}
-          rows="10"
-          style={{
-            width: "100%",
-            padding: "12px",
-            marginBottom: "15px",
-            borderRadius: "8px",
-            border: "1px solid #ddd",
-            lineHeight: "1.5",
-          }}
-        ></textarea>
+
+        <label
+          style={{ fontWeight: "bold", marginBottom: "8px", display: "block" }}
+        >
+          Contenido del artículo
+        </label>
+
+        <EditorToolbar editor={editor} />
+
+        {editor && (
+          <div
+            style={{
+              border: "1px solid #ddd",
+              borderRadius: "8px",
+              padding: "10px 14px",
+              marginBottom: "20px",
+              background: "white",
+              lineHeight: "1.6",
+            }}
+          >
+            <EditorContent
+              editor={editor}
+              style={{
+                outline: "none",
+              }}
+            />
+          </div>
+        )}
 
         {/* ===============================
             SLUG (NO EDITABLE)

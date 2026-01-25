@@ -4,12 +4,21 @@
 
 import "./SobreMi.css";
 import useReveal from "../../hooks/useReveal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import fotoCaridad from "../../assets/img/caridad-temp.webp"; // ← añadimos la foto aquí
 
 export default function SobreMi() {
   useReveal();
   const [openFormacion, setOpenFormacion] = useState(false);
+  
+  // Fuerza la activación del reveal cuando se abre el acordeón
+useEffect(() => {
+  if (openFormacion) {
+    // Dispara manualmente el reveal al montarse el contenido
+    window.dispatchEvent(new Event("scroll"));
+  }
+}, [openFormacion]);
+
 
   return (
     <section id="sobre-mi" className="sobre-mi reveal fade-in">
@@ -64,9 +73,12 @@ export default function SobreMi() {
           >
             Formación Académica y Especializaciones {openFormacion ? "▲" : "▼"}
           </button>
+          
+
 
           {openFormacion && (
             <div className="formacion-timeline reveal delay-2">
+              
               <div className="formacion-item">
                 <span className="formacion-year">Actual</span>
                 <p>
