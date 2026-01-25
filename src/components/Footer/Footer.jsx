@@ -21,7 +21,7 @@ export default function Footer() {
 
 
       <p>© {new Date().getFullYear()} Caridad Fresneda — Psicóloga Sanitaria</p>
-      <p>Teléfono: 620 086 826 · Correo: caridadfresneda@cop.es</p>
+      <p>Teléfono: 655 669 001 · Correo: caridadfresneda@cop.es</p>
     </footer>
   );
 }
