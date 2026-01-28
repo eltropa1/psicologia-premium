@@ -9,7 +9,7 @@
 .footer-logo {
   width: 150px;     /* Más pequeño que el header */
   opacity: 0.85;
-  margin-bottom: 15px;
+  margin-bottom: 6px;
 }
 
 .footer-legal {
@@ -32,8 +32,7 @@
 
 .footer-logo-cop {
   display: block;
-  margin: 12px auto 0;
-   width: 100px;          /* más pequeño que el principal */
-  margin-top: 12px;
+  width: 100px;
+  margin: 6px auto 0;
   opacity: 0.9;
 }
