@@ -38,6 +38,7 @@ export default function Header() {
           <>
             <a onClick={() => handleNav("sobre-mi")}>Sobre mí</a>
             <a onClick={() => handleNav("servicios")}>Servicios</a>
+            <a onClick={() => handleNav("como-trabajo")}>Cómo trabajo</a>
             <a onClick={() => handleNav("tarifas")}>Tarifas</a>
             <a onClick={() => handleNav("blog")}>Blog</a>
             <a onClick={() => handleNav("contacto")}>Contacto</a>
@@ -71,28 +72,30 @@ export default function Header() {
 
           {isHome ? (
             <>
-              <a
-                onClick={() => {
-                  handleNav("sobre-mi");
-                  setMobileMenu(false);
+              <a onClick={() => {handleNav("sobre-mi"); setMobileMenu(false);
                 }}
-              >
-                Sobre mí
+              > Sobre mí
               </a>
-              <a
-                onClick={() => {
-                  handleNav("servicios");
+
+              <a onClick={() => {handleNav("servicios");
                   setMobileMenu(false);
                 }}
               >
                 Servicios
               </a>
+                <a onClick={() => { handleNav("como-trabajo"); setMobileMenu(false); }}>
+  Cómo trabajo
+</a>
+
+
+
               <a
                 onClick={() => {
                   handleNav("tarifas");
                   setMobileMenu(false);
                 }}
               >
+                
                 Tarifas
               </a>
 

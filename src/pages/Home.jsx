@@ -16,6 +16,7 @@ import BlogPreview from "../components/BlogPreview/BlogPreview";
 import Tarifas from "../components/Tarifas/Tarifas";
 // Foto provisional (se sustituye en el futuro por la foto real)
 import fotoCaridad from "../assets/img/caridad-temp.webp";
+import ComoTrabajo from "../components/ComoTrabajo/ComoTrabajo";
 
 import { useLocation } from "react-router-dom";
 import { React, useEffect } from "react";
@@ -67,6 +68,7 @@ export default function Home() {
       {/* SECCIONES PRINCIPALES */}
       <SobreMi />
       <Servicios />
+      <ComoTrabajo />
       <Tarifas />
     
 

@@ -1,0 +1,17 @@
+.como-trabajo {
+  padding: 32px 40px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.como-trabajo h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.como-trabajo p {
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
