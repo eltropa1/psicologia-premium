@@ -54,7 +54,7 @@
     background: none;
     box-shadow: none;
     padding: 10px 20px;
-    height: 0;
+    height: auto;
   }
 
   .header-title {

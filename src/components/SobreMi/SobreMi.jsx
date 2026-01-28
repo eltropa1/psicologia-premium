@@ -64,6 +64,12 @@ useEffect(() => {
           puedo cambiar.”
           <span>— Carl Rogers</span>
         </blockquote>
+        <p>
+  <strong>
+    <em>¿Empezamos a descubrir quién eres cuando te permites ser tú mismo?</em>
+  </strong>
+</p>
+
 
         {/* Acordeón de formación (se mantiene igual) */}
         <div className="formacion-container">

@@ -10,17 +10,15 @@ import Hero from "../components/Hero/Hero";
 import MobileHeader from "../components/MobileHeader/MobileHeader";
 import SobreMi from "../components/SobreMi/SobreMi";
 import Servicios from "../components/Servicios/Servicios";
-import Testimonios from "../components/Testimonios/Testimonios";
 import Contacto from "../components/Contacto/Contacto";
 import Footer from "../components/Footer/Footer";
 import BlogPreview from "../components/BlogPreview/BlogPreview";
-
+import Tarifas from "../components/Tarifas/Tarifas";
 // Foto provisional (se sustituye en el futuro por la foto real)
 import fotoCaridad from "../assets/img/caridad-temp.webp";
 
 import { useLocation } from "react-router-dom";
 import { React, useEffect } from "react";
-import { scrollToSection } from "../helpers/scrollToSection";
 
 export default function Home() {
   const { hash } = useLocation();
@@ -60,26 +58,17 @@ export default function Home() {
           alt="Caridad Fresneda Psicóloga"
           className="hero-mobile-foto"
         />
-        
-        {/* FRASE MANUSCRITA SOLO EN MÓVIL */}
-        <p className="hero-mobile-frase">
-          “Te acompaño a construir bienestar emocional desde el respeto y la autenticidad.”
+        <p className="hero-mobile-frase hero-mobile-quote">
+          “Tu historia te ha traído hasta aquí. Hoy empezamos a escribir el
+          siguiente capítulo. <a href="tel:655669001">¿Caminamos juntos?</a>”
         </p>
-
-        <button
-          className="btn-principal hero-mobile-btn"
-          onClick={() => scrollToSection("contacto")}
-        >
-          Contacta conmigo
-        </button>
       </div>
-
-      
 
       {/* SECCIONES PRINCIPALES */}
       <SobreMi />
       <Servicios />
-      <Testimonios />
+      <Tarifas />
+    
 
       {/* BLOG */}
       <BlogPreview />

@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <img
-        src="/Logo-1.png"
+        src="/LogoCaridad.png"
         alt="Caridad Fresneda Pastrana Psicóloga"
         className="footer-logo"
       />
@@ -22,6 +22,7 @@ export default function Footer() {
 
       <p>© {new Date().getFullYear()} Caridad Fresneda — Psicóloga Sanitaria</p>
       <p>Teléfono: 655 669 001 · Correo: caridadfresneda@cop.es</p>
+      <p>Psicóloga colegiada M-25801</p>
     </footer>
   );
 }

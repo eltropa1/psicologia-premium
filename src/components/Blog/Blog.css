@@ -1,5 +1,8 @@
 .blog-section {
-  padding: 80px 40px;
+   padding-top: 24px;
+  padding-bottom: 24px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .blog-section h2 {
