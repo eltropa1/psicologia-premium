@@ -12,6 +12,12 @@ export default function Footer() {
         alt="Caridad Fresneda Pastrana Psicóloga"
         className="footer-logo"
       />
+      <img
+  src="/logo-cop.png"
+  alt="Colegio Oficial de Psicólogos"
+  className="footer-logo-cop"
+/>
+
 
       <div className="footer-legal">
   <a href="/aviso-legal">Aviso Legal</a>
