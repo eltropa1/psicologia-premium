@@ -12,6 +12,7 @@
 
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { keepSupabaseAlive } from "./lib/keepAlive";
 import { scrollToSection } from "./helpers/scrollToSection";
 
 /* ============================
@@ -76,6 +77,10 @@ export default function App() {
       setTimeout(() => scrollToSection(id), 80);
     }
   }, [location]);
+
+  useEffect(() => {
+  keepSupabaseAlive();
+}, []);
 
   // ==========================================================
   // 3) RETURN PRINCIPAL
