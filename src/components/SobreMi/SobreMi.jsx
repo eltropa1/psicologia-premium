@@ -28,6 +28,8 @@ useEffect(() => {
           src={fotoCaridad}
           alt="Caridad Fresneda"
           className="foto-psicologa"
+           loading="eager"
+           decoding="async"
         />
         
       </div>

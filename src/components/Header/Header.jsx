@@ -29,6 +29,8 @@ export default function Header() {
         src="/LogoCaridad.png"
         alt="Caridad Fresneda Pastrana Psicóloga"
         className="logo-header"
+         loading="eager"
+         decoding="async"
         onClick={() => scrollToSection("top")}
       />
 

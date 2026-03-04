@@ -24,7 +24,12 @@ export default function Hero() {
 
         {/* FOTO ESCRITORIO */}
         <div className="hero-desktop-foto">
-          <img src={fotoCaridad} alt="Caridad Fresneda Psicóloga" />
+          <img 
+            src={fotoCaridad} 
+            alt="Caridad Fresneda Psicóloga" 
+             loading="eager"
+             decoding="async"
+          />
         </div>
       </div>
     </section>
