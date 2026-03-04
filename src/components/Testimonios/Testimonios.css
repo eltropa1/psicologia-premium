@@ -14,7 +14,6 @@
   content: "";
   width: 120px;
   height: 14px;
-  background: url("https://raw.githubusercontent.com/yourcdn/brushstroke.png") no-repeat center;
   background-size: contain;
   position: absolute;
   left: 50%;

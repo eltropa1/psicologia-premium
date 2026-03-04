@@ -78,8 +78,19 @@ export default function App() {
     }
   }, [location]);
 
-  useEffect(() => {
+  //==========================================================
+  // Mantener viva la bd aunque nadie entre a ningun articulo del blog
+  // ==========================================================
+ useEffect(() => {
+
   keepSupabaseAlive();
+
+  const interval = setInterval(() => {
+    keepSupabaseAlive();
+  }, 1000 * 60 * 30); // cada 30 minutos
+
+  return () => clearInterval(interval);
+
 }, []);
 
   // ==========================================================
