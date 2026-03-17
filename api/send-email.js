@@ -28,9 +28,6 @@ export default async function handler(req, res) {
       user: process.env.MAIL_USER,
       pass: process.env.MAIL_PASS,
     },
-    tls: {
-      rejectUnauthorized: false,
-    },
   });
 
   // ================================================
