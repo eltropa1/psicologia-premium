@@ -44,8 +44,59 @@
 
 .servicios-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
+
+  /* ============================================
+     MOBILE FIRST
+     - 1 columna en móvil (igual que ahora)
+  ============================================ */
+  grid-template-columns: 1fr;
+}
+
+
+/* ============================================
+   TABLET
+   - 2 columnas
+============================================ */
+@media (min-width: 768px) {
+  .servicios-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ============================================
+   DESKTOP
+   - 3 columnas equilibradas
+   - evita huecos raros
+============================================ */
+@media (min-width: 1024px) {
+  .servicios-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* ============================================
+     TARJETAS DESTACADAS (fila inferior)
+     ocupan más espacio visual
+  ============================================ */
+  .servicio-destacado {
+    grid-column: span 1;
+  }
+}
+
+
+/* ============================================
+   DESKTOP GRANDE (opcional mejora visual)
+============================================ */
+@media (min-width: 1280px) {
+  .servicios-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Las destacadas ocupan 2 columnas */
+  .servicio-destacado {
+    grid-column: span 2;
+  }
 }
 
 .servicio-card {

@@ -59,7 +59,7 @@ export default function Servicios() {
           </p>
         </div>
 
-        <div className="servicio-card">
+        <div className="servicio-card servicio-destacado">
           <h3>Terapia de pareja</h3>
           <p>
             Cuando la comunicación se quiebra, la intimidad desaparece o una crisis (como
@@ -68,7 +68,7 @@ export default function Servicios() {
           </p>
         </div>
 
-        <div className="servicio-card">
+        <div className="servicio-card servicio-destacado">
           <h3>Terapia online o presencial</h3>
           <p>
             "Mi consulta está diseñada para ser un refugio de calma; un espacio acogedor y
