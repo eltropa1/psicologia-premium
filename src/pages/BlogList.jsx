@@ -5,6 +5,7 @@ import "../components/Blog/Blog.css";
 import BlogHeader from "../components/Blog/BlogHeader";
 import ScrollTopButton from "../components/ScrollTopButton/ScrollTopButton";
 
+import { Helmet } from "react-helmet-async";
 
 // ⬅️ IMPORTANTE: importa el hook
 import useReveal from "../hooks/useReveal";
@@ -30,33 +31,50 @@ export default function BlogList() {
 
   return (
     <>
-    <BlogHeader />
-    <ScrollTopButton />
-    
-    <section className="blog-section" style={{ paddingTop: "120px" }}>
-      <h2 className="reveal">Blog</h2>
+      <Helmet>
+        <title>Blog de Psicología | Caridad Fresneda</title>
 
-      <div className="blog-grid">
-        {articles.map((art, i) => (
-          <Link
-  key={art.id}
-  to={`/blog/${art.slug}`}
-  className={`post reveal delay-${i + 1}`}
-  style={{ textDecoration: "none", color: "inherit" }}
->
-  <img src={art.image_url} alt={art.title} />
+        <meta
+          name="description"
+          content="Artículos sobre ansiedad, relaciones, bienestar emocional y crecimiento personal."
+        />
 
-  <div className="post-content">
-    <h3>{art.title}</h3>
-    <p>{art.description}</p>
-    <span className="leer-mas">Leer más →</span>
-  </div>
-</Link>
+        {/* Open Graph */}
+        <meta
+          property="og:title"
+          content="Blog de Psicología | Caridad Fresneda"
+        />
+        <meta
+          property="og:description"
+          content="Artículos sobre ansiedad, relaciones y bienestar emocional."
+        />
+        <meta property="og:image" content="/LogoCaridad.png" />
+      </Helmet>
+      <BlogHeader />
+      <ScrollTopButton />
 
-        ))}
-      </div>
-      
-    </section>
+      <section className="blog-section" style={{ paddingTop: "120px" }}>
+        <h2 className="reveal">Blog</h2>
+
+        <div className="blog-grid">
+          {articles.map((art, i) => (
+            <Link
+              key={art.id}
+              to={`/blog/${art.slug}`}
+              className={`post reveal delay-${i + 1}`}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <img src={art.image_url} alt={art.title} />
+
+              <div className="post-content">
+                <h3>{art.title}</h3>
+                <p>{art.description}</p>
+                <span className="leer-mas">Leer más →</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
     </>
   );
 }

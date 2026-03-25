@@ -21,6 +21,8 @@ import ComoTrabajo from "../components/ComoTrabajo/ComoTrabajo";
 import { useLocation } from "react-router-dom";
 import { React, useEffect } from "react";
 
+import { Helmet } from "react-helmet-async";
+
 export default function Home() {
   const { hash } = useLocation();
 
@@ -37,6 +39,24 @@ export default function Home() {
 
   return (
     <>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Psychologist",
+            name: "Caridad Fresneda",
+            image: "https://www.caridadfresnedapsicologa.com/LogoCaridad.png",
+            url: "https://www.caridadfresnedapsicologa.com",
+            telephone: "+34655669001",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Madrid",
+              addressCountry: "ES",
+            },
+            sameAs: [],
+          })}
+        </script>
+      </Helmet>
       {/* TOP */}
       <div id="top"></div>
 
@@ -70,7 +90,6 @@ export default function Home() {
       <Servicios />
       <ComoTrabajo />
       <Tarifas />
-    
 
       {/* BLOG */}
       <BlogPreview />

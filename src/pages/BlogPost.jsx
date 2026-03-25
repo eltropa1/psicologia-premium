@@ -6,6 +6,7 @@ import ScrollTopButton from "../components/ScrollTopButton/ScrollTopButton";
 import BlogPostNavigation from "../components/BlogPostNavigation/BlogPostNavigation";
 import "../components/BlogPostNavigation/BlogPostNavigation.css";
 
+import { Helmet } from "react-helmet-async";
 
 // ⬅️ IMPORTA EL HOOK
 import useReveal from "../hooks/useReveal";
@@ -24,14 +25,14 @@ export default function BlogPost() {
     const revealElements = document.querySelectorAll(".reveal");
 
     // esperamos dos frames para asegurar estado inicial + transición perceptible
-  requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      revealElements.forEach((el) => {
-        el.classList.add("visible");
+      requestAnimationFrame(() => {
+        revealElements.forEach((el) => {
+          el.classList.add("visible");
+        });
       });
     });
-  });
-}, [post]);
+  }, [post]);
 
   useEffect(() => {
     async function loadPost() {
@@ -55,6 +56,26 @@ export default function BlogPost() {
 
   return (
     <>
+      {post && (
+        <Helmet>
+          <title>{post.title} | Caridad Fresneda</title>
+          <meta
+            name="description"
+            content={
+              post.excerpt || post.title || "Artículo de psicología en Madrid"
+            }
+          />
+          <meta property="og:title" content={post.title} />
+          <meta
+            property="og:description"
+            content={post.excerpt || post.title}
+          />
+          <meta
+            property="og:image"
+            content={post.image_url || "/LogoCaridad.png"}
+          />
+        </Helmet>
+      )}
       <BlogHeader />
       <ScrollTopButton />
 
@@ -67,7 +88,7 @@ export default function BlogPost() {
         </h1>
 
         <BlogPostNavigation />
-        
+
         <img
           src={post.image_url}
           alt={post.title}
@@ -81,7 +102,6 @@ export default function BlogPost() {
           }}
         />
 
-
         <article
           className="reveal delay-2"
           style={{
@@ -92,7 +112,6 @@ export default function BlogPost() {
           }}
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
-      
       </section>
     </>
   );

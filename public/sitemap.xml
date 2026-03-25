@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
-    <loc>https://TU_DOMINIO/</loc>
+    <loc>https://www.caridadfresnedapsicologa.com/</loc>
   </url>
+
   <url>
-    <loc>https://TU_DOMINIO/blog</loc>
+    <loc>https://www.caridadfresnedapsicologa.com/sobre-mi</loc>
   </url>
+
+  <url>
+    <loc>https://www.caridadfresnedapsicologa.com/servicios</loc>
+  </url>
+
+  <url>
+    <loc>https://www.caridadfresnedapsicologa.com/tarifas</loc>
+  </url>
+
+  <url>
+    <loc>https://www.caridadfresnedapsicologa.com/contacto</loc>
+  </url>
+
+  <url>
+    <loc>https://www.caridadfresnedapsicologa.com/blog</loc>
+  </url>
+
 </urlset>
