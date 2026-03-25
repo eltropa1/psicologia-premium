@@ -11,7 +11,7 @@ export default function AvisoLegal() {
 
       <p>
         Este sitio web es titularidad de <strong>Caridad Fresneda Psicología</strong>,
-        con domicilio profesional en <strong>C/ Mercedes de Arteaga, 13 local 4, Madrid</strong>.
+        con domicilio profesional en <strong>C/ Peñarroya, 66, 28053, Madrid</strong>.
       </p>
 
       <p>
