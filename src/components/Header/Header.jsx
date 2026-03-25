@@ -25,29 +25,26 @@ export default function Header() {
   return (
     <header className="header">
       {/* Añadir logo  */}
-      <img
-        src="/LogoCaridad.png"
-        alt="Caridad Fresneda Pastrana Psicóloga"
-        className="logo-header"
-         loading="eager"
-         decoding="async"
-        onClick={() => scrollToSection("top")}
-      />
+      <Link to="/">
+  <img
+    src="/LogoCaridad.png"
+    alt="Caridad Fresneda Pastrana Psicóloga"
+    className="logo-header"
+    loading="eager"
+    decoding="async"
+  />
+</Link>
 
       {/* NAV ESCRITORIO */}
       <nav className="nav-desktop">
-        {isHome ? (
-          <>
-            <a onClick={() => handleNav("sobre-mi")}>Sobre mí</a>
-            <a onClick={() => handleNav("servicios")}>Servicios</a>
-            <a onClick={() => handleNav("como-trabajo")}>Cómo trabajo</a>
-            <a onClick={() => handleNav("tarifas")}>Tarifas</a>
-            <a onClick={() => handleNav("blog")}>Blog</a>
-            <a onClick={() => handleNav("contacto")}>Contacto</a>
-          </>
-        ) : (
+        <>
           <Link to="/">Inicio</Link>
-        )}
+          <Link to="/sobre-mi">Sobre mí</Link>
+          <Link to="/servicios">Servicios</Link>
+          <Link to="/tarifas">Tarifas</Link>
+          <Link to="/contacto">Contacto</Link>
+          <Link to="/blog">Blog</Link>
+        </>
       </nav>
 
       {/* HAMBURGUESA */}
@@ -59,66 +56,16 @@ export default function Header() {
       {mobileMenu && (
         <nav className="nav-mobile">
           {/* 🔹 Inicio SIEMPRE visible en menú móvil */}
-          <Link
-            to="/"
-            onClick={() => {
-              window.location.hash = ""; // limpia cualquier ancla previa
-              setMobileMenu(false);
-              setTimeout(() => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }, 50); // pequeño delay para asegurar que React cargó el home
-            }}
-          >
-            Inicio
-          </Link>
+          
 
-          {isHome ? (
-            <>
-              <a onClick={() => {handleNav("sobre-mi"); setMobileMenu(false);
-                }}
-              > Sobre mí
-              </a>
-
-              <a onClick={() => {handleNav("servicios");
-                  setMobileMenu(false);
-                }}
-              >
-                Servicios
-              </a>
-                <a onClick={() => { handleNav("como-trabajo"); setMobileMenu(false); }}>
-  Cómo trabajo
-</a>
-
-
-
-              <a
-                onClick={() => {
-                  handleNav("tarifas");
-                  setMobileMenu(false);
-                }}
-              >
-                
-                Tarifas
-              </a>
-
-              <a
-                onClick={() => {
-                  handleNav("blog");
-                  setMobileMenu(false);
-                }}
-              >
-                Blog
-              </a>
-              <a
-                onClick={() => {
-                  handleNav("contacto");
-                  setMobileMenu(false);
-                }}
-              >
-                Contacto
-              </a>
-            </>
-          ) : null}
+         <>
+  <Link to="/" onClick={() => setMobileMenu(false)}>Inicio</Link>
+  <Link to="/sobre-mi" onClick={() => setMobileMenu(false)}>Sobre mí</Link>
+  <Link to="/servicios" onClick={() => setMobileMenu(false)}>Servicios</Link>
+  <Link to="/tarifas" onClick={() => setMobileMenu(false)}>Tarifas</Link>
+  <Link to="/contacto" onClick={() => setMobileMenu(false)}>Contacto</Link>
+  <Link to="/blog" onClick={() => setMobileMenu(false)}>Blog</Link>
+</>
         </nav>
       )}
     </header>

@@ -22,6 +22,11 @@ import Home from "./pages/Home";
 import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
 
+import ServiciosPage from "./pages/ServiciosPage";
+import SobreMiPage from "./pages/SobreMiPage";
+import TarifasPage from "./pages/TarifasPage";
+import ContactoPage from "./pages/ContactoPage";
+
 /* ============================
    Páginas legales
 ============================ */
@@ -50,23 +55,26 @@ export default function App() {
   // 1) ANIMACIÓN REVEAL EN TODAS LAS SECCIONES
   // ==========================================================
   useEffect(() => {
-    const revealElements = () => {
-      const reveals = document.querySelectorAll(".reveal");
-      reveals.forEach((el) => {
-        const windowHeight = window.innerHeight;
-        const elementTop = el.getBoundingClientRect().top;
+  const revealElements = () => {
+    const reveals = document.querySelectorAll(".reveal");
 
-        if (elementTop < windowHeight - 50) {
-          el.classList.add("active");
-        }
-      });
-    };
+    reveals.forEach((el) => {
+      const windowHeight = window.innerHeight;
+      const elementTop = el.getBoundingClientRect().top;
 
-    window.addEventListener("scroll", revealElements);
-    revealElements(); // Ejecutar una vez al montar
+      if (elementTop < windowHeight - 50) {
+        el.classList.add("active");
+      }
+    });
+  };
 
-    return () => window.removeEventListener("scroll", revealElements);
-  }, []);
+  // 👇 IMPORTANTE: ejecutar al cargar y al cambiar de ruta
+  revealElements();
+
+  window.addEventListener("scroll", revealElements);
+
+  return () => window.removeEventListener("scroll", revealElements);
+}, [location.pathname]); // 👈 CLAVE
 
   // ==========================================================
   // 2) NAVEGACIÓN A SECCIONES (#hash)
@@ -117,6 +125,10 @@ export default function App() {
             PÚBLICAS
         ============================= */}
         <Route path="/" element={<Home />} />
+        <Route path="/servicios" element={<ServiciosPage />} />
+<Route path="/sobre-mi" element={<SobreMiPage />} />
+<Route path="/tarifas" element={<TarifasPage />} />
+<Route path="/contacto" element={<ContactoPage />} />
         <Route path="/blog" element={<BlogList />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
 
