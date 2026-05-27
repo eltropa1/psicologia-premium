@@ -4,6 +4,7 @@ import { supabase } from "../lib/supabaseClient";
 import BlogHeader from "../components/Blog/BlogHeader";
 import ScrollTopButton from "../components/ScrollTopButton/ScrollTopButton";
 import BlogPostNavigation from "../components/BlogPostNavigation/BlogPostNavigation";
+import ShareArticle from "../components/ShareArticle/ShareArticle";
 import "../components/BlogPostNavigation/BlogPostNavigation.css";
 
 import { Helmet } from "react-helmet-async";
@@ -54,26 +55,33 @@ export default function BlogPost() {
   if (loading) return <p style={{ padding: "40px" }}>Cargando artículo...</p>;
   if (!post) return <p style={{ padding: "40px" }}>Artículo no encontrado.</p>;
 
+  const articleUrl =
+    typeof window !== "undefined"
+      ? window.location.href
+      : `https://www.caridadfresnedapsicologa.com/blog/${post.slug}`;
+  const metaDescription =
+    post.excerpt || post.title || "Artículo de psicología en Madrid";
+  const metaImage = post.image_url || "/LogoCaridad.png";
+  const absoluteMetaImage =
+    typeof window !== "undefined"
+      ? new URL(metaImage, window.location.origin).href
+      : metaImage;
+
   return (
     <>
       {post && (
         <Helmet>
           <title>{post.title} | Caridad Fresneda</title>
-          <meta
-            name="description"
-            content={
-              post.excerpt || post.title || "Artículo de psicología en Madrid"
-            }
-          />
+          <meta name="description" content={metaDescription} />
           <meta property="og:title" content={post.title} />
-          <meta
-            property="og:description"
-            content={post.excerpt || post.title}
-          />
-          <meta
-            property="og:image"
-            content={post.image_url || "/LogoCaridad.png"}
-          />
+          <meta property="og:description" content={metaDescription} />
+          <meta property="og:type" content="article" />
+          <meta property="og:url" content={articleUrl} />
+          <meta property="og:image" content={absoluteMetaImage} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={post.title} />
+          <meta name="twitter:description" content={metaDescription} />
+          <meta name="twitter:image" content={absoluteMetaImage} />
         </Helmet>
       )}
       <BlogHeader />
@@ -112,6 +120,8 @@ export default function BlogPost() {
           }}
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
+
+        <ShareArticle title={post.title} />
       </section>
     </>
   );
